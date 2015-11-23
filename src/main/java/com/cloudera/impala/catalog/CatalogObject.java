@@ -18,8 +18,22 @@ import com.cloudera.impala.thrift.TCatalogObjectType;
 
 /**
  * Interface that all catalog objects implement.
+ * 所有缓存对象的接口
  */
 public interface CatalogObject {
+    
+    /**
+     *   UNKNOWN, // 转换失败或有异常时，为该类型
+     *   CATALOG, 
+     *   DATABASE,
+     *   TABLE,
+     *   VIEW,
+     *   FUNCTION,
+     *   DATA_SOURCE,
+     *   ROLE,
+     *   PRIVILEGE,
+     *   HDFS_CACHE_POOL,
+     * */
   // Returns the TCatalogObject type of this Catalog object.
   public TCatalogObjectType getCatalogObjectType();
 
