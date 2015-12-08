@@ -67,6 +67,7 @@ public abstract class Table implements CatalogObject {
   protected TAccessLevel accessLevel_ = TAccessLevel.READ_WRITE;
 
   // Number of clustering columns.
+  // 分区列数量
   protected int numClusteringCols_;
 
   // estimated number of rows in table; -1: unknown.
@@ -74,10 +75,15 @@ public abstract class Table implements CatalogObject {
 
   // colsByPos[i] refers to the ith column in the table. The first numClusteringCols are
   // the clustering columns.
+  // 该表所有当前列，前 numClusteringCols_ 是分区列
   private final ArrayList<Column> colsByPos_;
 
   // map from lowercase column name to Column object.
   private final Map<String, Column> colsByName_;
+  
+  // added by dayutianfei on 2015-12-8
+  // 历史列信息，包括所有列
+  private ArrayList<ColumnEnhanced> historyCols_;
 
   // The lastDdlTime for this table; -1 if not set
   protected long lastDdlTime_;
