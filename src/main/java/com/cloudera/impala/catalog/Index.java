@@ -45,6 +45,9 @@ public class Index {
     // 如果存储在HDFS中，则使用hive自动生成的路径
     // 如果存储在本地磁盘中，则该路经仅表示根目录，具体目录由加载生成
     public String location_;
+    
+    // key:提取标识，value:对应的文件信息
+    public Map<String, FileDescriptor> indiceFiles_;
 
     public Map<String, String> params; // optional
 
