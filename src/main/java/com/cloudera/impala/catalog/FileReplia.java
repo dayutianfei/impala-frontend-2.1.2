@@ -19,7 +19,6 @@ public class FileReplia {
     
     public short status_; // 文件状态 {0:in-writing, 1:open, 2:closed, 3:in-reading, 4:unknown}
     
-    public long createTime_; // 文件创建时间
     public long lastAccessTime_; // 文件更新时间
     public short version_;
     
