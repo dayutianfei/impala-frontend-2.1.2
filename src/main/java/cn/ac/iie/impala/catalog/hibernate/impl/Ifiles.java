@@ -1,4 +1,4 @@
-package cn.ac.iie.impala.catalog.hibernate.dao2;
+package cn.ac.iie.impala.catalog.hibernate.impl;
 
 import java.util.HashSet;
 import java.util.Set;

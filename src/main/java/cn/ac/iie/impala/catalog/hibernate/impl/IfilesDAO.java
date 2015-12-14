@@ -1,4 +1,4 @@
-package cn.ac.iie.impala.catalog.hibernate.dao2;
+package cn.ac.iie.impala.catalog.hibernate.impl;
 
 import cn.dayutianfei.dao.BaseHibernateDAO;
 import java.util.List;
