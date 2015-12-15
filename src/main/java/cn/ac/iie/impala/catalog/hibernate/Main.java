@@ -1,5 +1,6 @@
 package cn.ac.iie.impala.catalog.hibernate;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,7 +28,17 @@ public static void main(String[] args) {
 	dao.save(file);
 	dao.getSession().getTransaction().commit();
 	for(Object temp : dao.findAll()){
-		System.out.println(((IFiles)temp).getFileId());
+	    String content = ((IFiles)temp).getIfileParamses().iterator().next().getFileValues();
+//	    System.out.println(content);
+	    String xx = null;
+        try {
+            xx = new String(content.getBytes(), "utf-8");
+        }
+        catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+		System.out.println(xx);
 	}
 }
 }

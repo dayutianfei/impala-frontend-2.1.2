@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * A data access object (DAO) providing persistence and search support for
- * IfileReplicas entities. Transaction control of the save(), update() and
+ * IFileReplicas entities. Transaction control of the save(), update() and
  * delete() operations can directly support Spring container-managed
  * transactions or they can be augmented to handle user-managed Spring
  * transactions. Each of these methods provides additional information for how
@@ -33,7 +33,7 @@ public class IFileReplicasDAO extends BaseHibernateDAO {
 	public static final String REP_IDX = "repIdx";
 
 	public void save(IFileReplicas transientInstance) {
-		log.debug("saving IfileReplicas instance");
+		log.debug("saving IFileReplicas instance");
 		try {
 			getSession().save(transientInstance);
 			log.debug("save successful");
@@ -44,7 +44,7 @@ public class IFileReplicasDAO extends BaseHibernateDAO {
 	}
 
 	public void delete(IFileReplicas persistentInstance) {
-		log.debug("deleting IfileReplicas instance");
+		log.debug("deleting IFileReplicas instance");
 		try {
 			getSession().delete(persistentInstance);
 			log.debug("delete successful");
@@ -55,10 +55,10 @@ public class IFileReplicasDAO extends BaseHibernateDAO {
 	}
 
 	public IFileReplicas findById(java.lang.Long id) {
-		log.debug("getting IfileReplicas instance with id: " + id);
+		log.debug("getting IFileReplicas instance with id: " + id);
 		try {
 			IFileReplicas instance = (IFileReplicas) getSession().get(
-					"cn.dayutianfei.dao2.IfileReplicas", id);
+					"cn.ac.iie.impala.catalog.hibernate.impl.IFileReplicas", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -67,10 +67,10 @@ public class IFileReplicasDAO extends BaseHibernateDAO {
 	}
 
 	public List<IFileReplicas> findByExample(IFileReplicas instance) {
-		log.debug("finding IfileReplicas instance by example");
+		log.debug("finding IFileReplicas instance by example");
 		try {
 			List<IFileReplicas> results = (List<IFileReplicas>) getSession()
-					.createCriteria("cn.dayutianfei.dao2.IfileReplicas")
+					.createCriteria("cn.ac.iie.impala.catalog.hibernate.impl.IFileReplicas")
 					.add(create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
@@ -82,10 +82,10 @@ public class IFileReplicasDAO extends BaseHibernateDAO {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding IfileReplicas instance with property: "
+		log.debug("finding IFileReplicas instance with property: "
 				+ propertyName + ", value: " + value);
 		try {
-			String queryString = "from IfileReplicas as model where model."
+			String queryString = "from IFileReplicas as model where model."
 					+ propertyName + "= ?";
 			Query queryObject = getSession().createQuery(queryString);
 			queryObject.setParameter(0, value);
@@ -125,9 +125,9 @@ public class IFileReplicasDAO extends BaseHibernateDAO {
 	}
 
 	public List findAll() {
-		log.debug("finding all IfileReplicas instances");
+		log.debug("finding all IFileReplicas instances");
 		try {
-			String queryString = "from IfileReplicas";
+			String queryString = "from IFileReplicas";
 			Query queryObject = getSession().createQuery(queryString);
 			return queryObject.list();
 		} catch (RuntimeException re) {
@@ -137,7 +137,7 @@ public class IFileReplicasDAO extends BaseHibernateDAO {
 	}
 
 	public IFileReplicas merge(IFileReplicas detachedInstance) {
-		log.debug("merging IfileReplicas instance");
+		log.debug("merging IFileReplicas instance");
 		try {
 			IFileReplicas result = (IFileReplicas) getSession().merge(
 					detachedInstance);
@@ -150,7 +150,7 @@ public class IFileReplicasDAO extends BaseHibernateDAO {
 	}
 
 	public void attachDirty(IFileReplicas instance) {
-		log.debug("attaching dirty IfileReplicas instance");
+		log.debug("attaching dirty IFileReplicas instance");
 		try {
 			getSession().saveOrUpdate(instance);
 			log.debug("attach successful");
@@ -161,7 +161,7 @@ public class IFileReplicasDAO extends BaseHibernateDAO {
 	}
 
 	public void attachClean(IFileReplicas instance) {
-		log.debug("attaching clean IfileReplicas instance");
+		log.debug("attaching clean IFileReplicas instance");
 		try {
 			getSession().lock(instance, LockMode.NONE);
 			log.debug("attach successful");

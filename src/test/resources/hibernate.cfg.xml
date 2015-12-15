@@ -11,7 +11,7 @@
 			org.hibernate.dialect.MySQLDialect
 		</property>
 		<property name="connection.url">
-			jdbc:mysql://localhost:3306/idriller_files
+			<![CDATA[jdbc:mysql://localhost:3306/idriller_files?useUnicode=true&characterEncoding=utf8]]>
 		</property>
 		<property name="connection.username">root</property>
 		<property name="connection.password">root</property>
@@ -21,10 +21,10 @@
 		<property name="myeclipse.connection.profile">
 			com.mysql.jdbc.Driver
 		</property>
-		<mapping class="cn.ac.iie.impala.catalog.hibernate.impl.Ifiles" />
-		<mapping class="cn.ac.iie.impala.catalog.hibernate.impl.IfileParams" />
-		<mapping class="cn.ac.iie.impala.catalog.hibernate.impl.IfileSet" />
-		<mapping class="cn.ac.iie.impala.catalog.hibernate.impl.IfileReplicas" />
+		<mapping class="cn.ac.iie.impala.catalog.hibernate.impl.IFiles" />
+		<mapping class="cn.ac.iie.impala.catalog.hibernate.impl.IFileParams" />
+		<mapping class="cn.ac.iie.impala.catalog.hibernate.impl.IFileSet" />
+		<mapping class="cn.ac.iie.impala.catalog.hibernate.impl.IFileReplicas" />
 
 	</session-factory>
 
