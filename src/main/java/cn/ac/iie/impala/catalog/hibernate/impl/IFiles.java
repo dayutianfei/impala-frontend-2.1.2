@@ -17,7 +17,7 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity
 @Table(name = "ifiles", catalog = "idriller_files")
-public class Ifiles implements java.io.Serializable {
+public class IFiles implements java.io.Serializable {
 
 	// Fields
 
@@ -33,26 +33,26 @@ public class Ifiles implements java.io.Serializable {
 	private String fileDesc;
 	private Short fileVersion;
 	private Long fileFsId;
-	private Set<IfileReplicas> ifileReplicases = new HashSet<IfileReplicas>(0);
-	private Set<IfileParams> ifileParamses = new HashSet<IfileParams>(0);
+	private Set<IFileReplicas> ifileReplicases = new HashSet<IFileReplicas>(0);
+	private Set<IFileParams> ifileParamses = new HashSet<IFileParams>(0);
 
 	// Constructors
 
 	/** default constructor */
-	public Ifiles() {
+	public IFiles() {
 	}
 
 	/** minimal constructor */
-	public Ifiles(String fileName) {
+	public IFiles(String fileName) {
 		this.fileName = fileName;
 	}
 
 	/** full constructor */
-	public Ifiles(String fileName, String fileType, String fileLocation,
+	public IFiles(String fileName, String fileType, String fileLocation,
 			Short fileStatus, Long fileRecordNumber, Long fileBytes,
 			Integer fileCreatetime, Integer fileUpdatetime, String fileDesc,
 			Short fileVersion, Long fileFsId,
-			Set<IfileReplicas> ifileReplicases, Set<IfileParams> ifileParamses) {
+			Set<IFileReplicas> ifileReplicases, Set<IFileParams> ifileParamses) {
 		this.fileName = fileName;
 		this.fileType = fileType;
 		this.fileLocation = fileLocation;
@@ -181,20 +181,20 @@ public class Ifiles implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "ifiles")
-	public Set<IfileReplicas> getIfileReplicases() {
+	public Set<IFileReplicas> getIfileReplicases() {
 		return this.ifileReplicases;
 	}
 
-	public void setIfileReplicases(Set<IfileReplicas> ifileReplicases) {
+	public void setIfileReplicases(Set<IFileReplicas> ifileReplicases) {
 		this.ifileReplicases = ifileReplicases;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "ifiles")
-	public Set<IfileParams> getIfileParamses() {
+	public Set<IFileParams> getIfileParamses() {
 		return this.ifileParamses;
 	}
 
-	public void setIfileParamses(Set<IfileParams> ifileParamses) {
+	public void setIfileParamses(Set<IFileParams> ifileParamses) {
 		this.ifileParamses = ifileParamses;
 	}
 

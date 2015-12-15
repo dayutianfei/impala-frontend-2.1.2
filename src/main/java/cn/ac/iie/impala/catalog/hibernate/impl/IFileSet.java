@@ -12,7 +12,7 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity
 @Table(name = "ifile_set", catalog = "idriller_files")
-public class IfileSet implements java.io.Serializable {
+public class IFileSet implements java.io.Serializable {
 
 	// Fields
 
@@ -22,11 +22,11 @@ public class IfileSet implements java.io.Serializable {
 	// Constructors
 
 	/** default constructor */
-	public IfileSet() {
+	public IFileSet() {
 	}
 
 	/** full constructor */
-	public IfileSet(String fsDesc) {
+	public IFileSet(String fsDesc) {
 		this.fsDesc = fsDesc;
 	}
 

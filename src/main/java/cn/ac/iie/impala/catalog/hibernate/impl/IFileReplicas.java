@@ -15,12 +15,12 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity
 @Table(name = "ifile_replicas", catalog = "idriller_files")
-public class IfileReplicas implements java.io.Serializable {
+public class IFileReplicas implements java.io.Serializable {
 
 	// Fields
 
 	private Long repId;
-	private Ifiles ifiles;
+	private IFiles ifiles;
 	private String repFileLocation;
 	private String repNode;
 	private String repDev;
@@ -32,11 +32,11 @@ public class IfileReplicas implements java.io.Serializable {
 	// Constructors
 
 	/** default constructor */
-	public IfileReplicas() {
+	public IFileReplicas() {
 	}
 
 	/** full constructor */
-	public IfileReplicas(Ifiles ifiles, String repFileLocation, String repNode,
+	public IFileReplicas(IFiles ifiles, String repFileLocation, String repNode,
 			String repDev, Integer repUpdatetime, Short repStatus,
 			Short repVersion, Short repIdx) {
 		this.ifiles = ifiles;
@@ -64,11 +64,11 @@ public class IfileReplicas implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "rep_file_id")
-	public Ifiles getIfiles() {
+	public IFiles getIfiles() {
 		return this.ifiles;
 	}
 
-	public void setIfiles(Ifiles ifiles) {
+	public void setIfiles(IFiles ifiles) {
 		this.ifiles = ifiles;
 	}
 

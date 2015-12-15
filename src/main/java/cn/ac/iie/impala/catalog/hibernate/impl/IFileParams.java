@@ -15,28 +15,28 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity
 @Table(name = "ifile_params", catalog = "idriller_files")
-public class IfileParams implements java.io.Serializable {
+public class IFileParams implements java.io.Serializable {
 
 	// Fields
 
 	private Long fileId;
-	private Ifiles ifiles;
+	private IFiles ifiles;
 	private String fileKey;
 	private String fileValues;
 
 	// Constructors
 
 	/** default constructor */
-	public IfileParams() {
+	public IFileParams() {
 	}
 
 	/** minimal constructor */
-	public IfileParams(Ifiles ifiles) {
+	public IFileParams(IFiles ifiles) {
 		this.ifiles = ifiles;
 	}
 
 	/** full constructor */
-	public IfileParams(Ifiles ifiles, String fileKey, String fileValues) {
+	public IFileParams(IFiles ifiles, String fileKey, String fileValues) {
 		this.ifiles = ifiles;
 		this.fileKey = fileKey;
 		this.fileValues = fileValues;
@@ -57,11 +57,11 @@ public class IfileParams implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "file_id", unique = true, nullable = false, insertable = false, updatable = false)
-	public Ifiles getIfiles() {
+	public IFiles getIfiles() {
 		return this.ifiles;
 	}
 
-	public void setIfiles(Ifiles ifiles) {
+	public void setIfiles(IFiles ifiles) {
 		this.ifiles = ifiles;
 	}
 

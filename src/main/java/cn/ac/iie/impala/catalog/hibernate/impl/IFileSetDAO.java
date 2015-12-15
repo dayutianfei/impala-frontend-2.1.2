@@ -1,6 +1,6 @@
 package cn.ac.iie.impala.catalog.hibernate.impl;
 
-import cn.dayutianfei.dao.BaseHibernateDAO;
+import cn.ac.iie.impala.catalog.hibernate.BaseHibernateDAO;
 import java.util.List;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
@@ -10,25 +10,24 @@ import org.slf4j.LoggerFactory;
 
 /**
  * A data access object (DAO) providing persistence and search support for
- * IfileParams entities. Transaction control of the save(), update() and
- * delete() operations can directly support Spring container-managed
- * transactions or they can be augmented to handle user-managed Spring
- * transactions. Each of these methods provides additional information for how
- * to configure it for the desired type of transaction control.
+ * IfileSet entities. Transaction control of the save(), update() and delete()
+ * operations can directly support Spring container-managed transactions or they
+ * can be augmented to handle user-managed Spring transactions. Each of these
+ * methods provides additional information for how to configure it for the
+ * desired type of transaction control.
  * 
- * @see cn.dayutianfei.dao2.IfileParams
+ * @see cn.ac.iie.impala.catalog.hibernate.impl.IFileSet
  * @author MyEclipse Persistence Tools
  */
 
-public class IfileParamsDAO extends BaseHibernateDAO {
+public class IFileSetDAO extends BaseHibernateDAO {
 	private static final Logger log = LoggerFactory
-			.getLogger(IfileParamsDAO.class);
+			.getLogger(IFileSetDAO.class);
 	// property constants
-	public static final String FILE_KEY = "fileKey";
-	public static final String FILE_VALUES = "fileValues";
+	public static final String FS_DESC = "fsDesc";
 
-	public void save(IfileParams transientInstance) {
-		log.debug("saving IfileParams instance");
+	public void save(IFileSet transientInstance) {
+		log.debug("saving IfileSet instance");
 		try {
 			getSession().save(transientInstance);
 			log.debug("save successful");
@@ -38,8 +37,8 @@ public class IfileParamsDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public void delete(IfileParams persistentInstance) {
-		log.debug("deleting IfileParams instance");
+	public void delete(IFileSet persistentInstance) {
+		log.debug("deleting IfileSet instance");
 		try {
 			getSession().delete(persistentInstance);
 			log.debug("delete successful");
@@ -49,11 +48,11 @@ public class IfileParamsDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public IfileParams findById(java.lang.Long id) {
-		log.debug("getting IfileParams instance with id: " + id);
+	public IFileSet findById(java.lang.Long id) {
+		log.debug("getting IfileSet instance with id: " + id);
 		try {
-			IfileParams instance = (IfileParams) getSession().get(
-					"cn.dayutianfei.dao2.IfileParams", id);
+			IFileSet instance = (IFileSet) getSession().get(
+					"cn.dayutianfei.dao2.IfileSet", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -61,11 +60,11 @@ public class IfileParamsDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public List<IfileParams> findByExample(IfileParams instance) {
-		log.debug("finding IfileParams instance by example");
+	public List<IFileSet> findByExample(IFileSet instance) {
+		log.debug("finding IfileSet instance by example");
 		try {
-			List<IfileParams> results = (List<IfileParams>) getSession()
-					.createCriteria("cn.dayutianfei.dao2.IfileParams")
+			List<IFileSet> results = (List<IFileSet>) getSession()
+					.createCriteria("cn.dayutianfei.dao2.IfileSet")
 					.add(create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
@@ -77,10 +76,10 @@ public class IfileParamsDAO extends BaseHibernateDAO {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding IfileParams instance with property: " + propertyName
+		log.debug("finding IfileSet instance with property: " + propertyName
 				+ ", value: " + value);
 		try {
-			String queryString = "from IfileParams as model where model."
+			String queryString = "from IfileSet as model where model."
 					+ propertyName + "= ?";
 			Query queryObject = getSession().createQuery(queryString);
 			queryObject.setParameter(0, value);
@@ -91,18 +90,14 @@ public class IfileParamsDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public List<IfileParams> findByFileKey(Object fileKey) {
-		return findByProperty(FILE_KEY, fileKey);
-	}
-
-	public List<IfileParams> findByFileValues(Object fileValues) {
-		return findByProperty(FILE_VALUES, fileValues);
+	public List<IFileSet> findByFsDesc(Object fsDesc) {
+		return findByProperty(FS_DESC, fsDesc);
 	}
 
 	public List findAll() {
-		log.debug("finding all IfileParams instances");
+		log.debug("finding all IfileSet instances");
 		try {
-			String queryString = "from IfileParams";
+			String queryString = "from IfileSet";
 			Query queryObject = getSession().createQuery(queryString);
 			return queryObject.list();
 		} catch (RuntimeException re) {
@@ -111,11 +106,10 @@ public class IfileParamsDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public IfileParams merge(IfileParams detachedInstance) {
-		log.debug("merging IfileParams instance");
+	public IFileSet merge(IFileSet detachedInstance) {
+		log.debug("merging IfileSet instance");
 		try {
-			IfileParams result = (IfileParams) getSession().merge(
-					detachedInstance);
+			IFileSet result = (IFileSet) getSession().merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
@@ -124,8 +118,8 @@ public class IfileParamsDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public void attachDirty(IfileParams instance) {
-		log.debug("attaching dirty IfileParams instance");
+	public void attachDirty(IFileSet instance) {
+		log.debug("attaching dirty IfileSet instance");
 		try {
 			getSession().saveOrUpdate(instance);
 			log.debug("attach successful");
@@ -135,8 +129,8 @@ public class IfileParamsDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public void attachClean(IfileParams instance) {
-		log.debug("attaching clean IfileParams instance");
+	public void attachClean(IFileSet instance) {
+		log.debug("attaching clean IfileSet instance");
 		try {
 			getSession().lock(instance, LockMode.NONE);
 			log.debug("attach successful");

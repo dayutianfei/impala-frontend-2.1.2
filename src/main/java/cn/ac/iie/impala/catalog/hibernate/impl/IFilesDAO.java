@@ -1,6 +1,6 @@
 package cn.ac.iie.impala.catalog.hibernate.impl;
 
-import cn.dayutianfei.dao.BaseHibernateDAO;
+import cn.ac.iie.impala.catalog.hibernate.BaseHibernateDAO;
 import java.util.List;
 import java.util.Set;
 import org.hibernate.LockMode;
@@ -17,12 +17,12 @@ import org.slf4j.LoggerFactory;
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see cn.dayutianfei.dao2.Ifiles
+ * @see cn.ac.iie.impala.catalog.hibernate.impl.IFiles
  * @author MyEclipse Persistence Tools
  */
 
-public class IfilesDAO extends BaseHibernateDAO {
-	private static final Logger log = LoggerFactory.getLogger(IfilesDAO.class);
+public class IFilesDAO extends BaseHibernateDAO {
+	private static final Logger log = LoggerFactory.getLogger(IFilesDAO.class);
 	// property constants
 	public static final String FILE_NAME = "fileName";
 	public static final String FILE_TYPE = "fileType";
@@ -36,7 +36,7 @@ public class IfilesDAO extends BaseHibernateDAO {
 	public static final String FILE_VERSION = "fileVersion";
 	public static final String FILE_FS_ID = "fileFsId";
 
-	public void save(Ifiles transientInstance) {
+	public void save(IFiles transientInstance) {
 		log.debug("saving Ifiles instance");
 		try {
 			getSession().save(transientInstance);
@@ -47,7 +47,7 @@ public class IfilesDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public void delete(Ifiles persistentInstance) {
+	public void delete(IFiles persistentInstance) {
 		log.debug("deleting Ifiles instance");
 		try {
 			getSession().delete(persistentInstance);
@@ -58,10 +58,10 @@ public class IfilesDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public Ifiles findById(java.lang.Long id) {
+	public IFiles findById(java.lang.Long id) {
 		log.debug("getting Ifiles instance with id: " + id);
 		try {
-			Ifiles instance = (Ifiles) getSession().get(
+			IFiles instance = (IFiles) getSession().get(
 					"cn.dayutianfei.dao2.Ifiles", id);
 			return instance;
 		} catch (RuntimeException re) {
@@ -70,10 +70,10 @@ public class IfilesDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public List<Ifiles> findByExample(Ifiles instance) {
+	public List<IFiles> findByExample(IFiles instance) {
 		log.debug("finding Ifiles instance by example");
 		try {
-			List<Ifiles> results = (List<Ifiles>) getSession()
+			List<IFiles> results = (List<IFiles>) getSession()
 					.createCriteria("cn.dayutianfei.dao2.Ifiles")
 					.add(create(instance)).list();
 			log.debug("find by example successful, result size: "
@@ -100,47 +100,47 @@ public class IfilesDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public List<Ifiles> findByFileName(Object fileName) {
+	public List<IFiles> findByFileName(Object fileName) {
 		return findByProperty(FILE_NAME, fileName);
 	}
 
-	public List<Ifiles> findByFileType(Object fileType) {
+	public List<IFiles> findByFileType(Object fileType) {
 		return findByProperty(FILE_TYPE, fileType);
 	}
 
-	public List<Ifiles> findByFileLocation(Object fileLocation) {
+	public List<IFiles> findByFileLocation(Object fileLocation) {
 		return findByProperty(FILE_LOCATION, fileLocation);
 	}
 
-	public List<Ifiles> findByFileStatus(Object fileStatus) {
+	public List<IFiles> findByFileStatus(Object fileStatus) {
 		return findByProperty(FILE_STATUS, fileStatus);
 	}
 
-	public List<Ifiles> findByFileRecordNumber(Object fileRecordNumber) {
+	public List<IFiles> findByFileRecordNumber(Object fileRecordNumber) {
 		return findByProperty(FILE_RECORD_NUMBER, fileRecordNumber);
 	}
 
-	public List<Ifiles> findByFileBytes(Object fileBytes) {
+	public List<IFiles> findByFileBytes(Object fileBytes) {
 		return findByProperty(FILE_BYTES, fileBytes);
 	}
 
-	public List<Ifiles> findByFileCreatetime(Object fileCreatetime) {
+	public List<IFiles> findByFileCreatetime(Object fileCreatetime) {
 		return findByProperty(FILE_CREATETIME, fileCreatetime);
 	}
 
-	public List<Ifiles> findByFileUpdatetime(Object fileUpdatetime) {
+	public List<IFiles> findByFileUpdatetime(Object fileUpdatetime) {
 		return findByProperty(FILE_UPDATETIME, fileUpdatetime);
 	}
 
-	public List<Ifiles> findByFileDesc(Object fileDesc) {
+	public List<IFiles> findByFileDesc(Object fileDesc) {
 		return findByProperty(FILE_DESC, fileDesc);
 	}
 
-	public List<Ifiles> findByFileVersion(Object fileVersion) {
+	public List<IFiles> findByFileVersion(Object fileVersion) {
 		return findByProperty(FILE_VERSION, fileVersion);
 	}
 
-	public List<Ifiles> findByFileFsId(Object fileFsId) {
+	public List<IFiles> findByFileFsId(Object fileFsId) {
 		return findByProperty(FILE_FS_ID, fileFsId);
 	}
 
@@ -156,10 +156,10 @@ public class IfilesDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public Ifiles merge(Ifiles detachedInstance) {
+	public IFiles merge(IFiles detachedInstance) {
 		log.debug("merging Ifiles instance");
 		try {
-			Ifiles result = (Ifiles) getSession().merge(detachedInstance);
+			IFiles result = (IFiles) getSession().merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
@@ -168,7 +168,7 @@ public class IfilesDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public void attachDirty(Ifiles instance) {
+	public void attachDirty(IFiles instance) {
 		log.debug("attaching dirty Ifiles instance");
 		try {
 			getSession().saveOrUpdate(instance);
@@ -179,7 +179,7 @@ public class IfilesDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public void attachClean(Ifiles instance) {
+	public void attachClean(IFiles instance) {
 		log.debug("attaching clean Ifiles instance");
 		try {
 			getSession().lock(instance, LockMode.NONE);

@@ -1,6 +1,6 @@
 package cn.ac.iie.impala.catalog.hibernate.impl;
 
-import cn.dayutianfei.dao.BaseHibernateDAO;
+import cn.ac.iie.impala.catalog.hibernate.BaseHibernateDAO;
 import java.util.List;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
@@ -16,13 +16,13 @@ import org.slf4j.LoggerFactory;
  * transactions. Each of these methods provides additional information for how
  * to configure it for the desired type of transaction control.
  * 
- * @see cn.dayutianfei.dao2.IfileReplicas
+ * @see cn.ac.iie.impala.catalog.hibernate.impl.IFileReplicas
  * @author MyEclipse Persistence Tools
  */
 
-public class IfileReplicasDAO extends BaseHibernateDAO {
+public class IFileReplicasDAO extends BaseHibernateDAO {
 	private static final Logger log = LoggerFactory
-			.getLogger(IfileReplicasDAO.class);
+			.getLogger(IFileReplicasDAO.class);
 	// property constants
 	public static final String REP_FILE_LOCATION = "repFileLocation";
 	public static final String REP_NODE = "repNode";
@@ -32,7 +32,7 @@ public class IfileReplicasDAO extends BaseHibernateDAO {
 	public static final String REP_VERSION = "repVersion";
 	public static final String REP_IDX = "repIdx";
 
-	public void save(IfileReplicas transientInstance) {
+	public void save(IFileReplicas transientInstance) {
 		log.debug("saving IfileReplicas instance");
 		try {
 			getSession().save(transientInstance);
@@ -43,7 +43,7 @@ public class IfileReplicasDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public void delete(IfileReplicas persistentInstance) {
+	public void delete(IFileReplicas persistentInstance) {
 		log.debug("deleting IfileReplicas instance");
 		try {
 			getSession().delete(persistentInstance);
@@ -54,10 +54,10 @@ public class IfileReplicasDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public IfileReplicas findById(java.lang.Long id) {
+	public IFileReplicas findById(java.lang.Long id) {
 		log.debug("getting IfileReplicas instance with id: " + id);
 		try {
-			IfileReplicas instance = (IfileReplicas) getSession().get(
+			IFileReplicas instance = (IFileReplicas) getSession().get(
 					"cn.dayutianfei.dao2.IfileReplicas", id);
 			return instance;
 		} catch (RuntimeException re) {
@@ -66,10 +66,10 @@ public class IfileReplicasDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public List<IfileReplicas> findByExample(IfileReplicas instance) {
+	public List<IFileReplicas> findByExample(IFileReplicas instance) {
 		log.debug("finding IfileReplicas instance by example");
 		try {
-			List<IfileReplicas> results = (List<IfileReplicas>) getSession()
+			List<IFileReplicas> results = (List<IFileReplicas>) getSession()
 					.createCriteria("cn.dayutianfei.dao2.IfileReplicas")
 					.add(create(instance)).list();
 			log.debug("find by example successful, result size: "
@@ -96,31 +96,31 @@ public class IfileReplicasDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public List<IfileReplicas> findByRepFileLocation(Object repFileLocation) {
+	public List<IFileReplicas> findByRepFileLocation(Object repFileLocation) {
 		return findByProperty(REP_FILE_LOCATION, repFileLocation);
 	}
 
-	public List<IfileReplicas> findByRepNode(Object repNode) {
+	public List<IFileReplicas> findByRepNode(Object repNode) {
 		return findByProperty(REP_NODE, repNode);
 	}
 
-	public List<IfileReplicas> findByRepDev(Object repDev) {
+	public List<IFileReplicas> findByRepDev(Object repDev) {
 		return findByProperty(REP_DEV, repDev);
 	}
 
-	public List<IfileReplicas> findByRepUpdatetime(Object repUpdatetime) {
+	public List<IFileReplicas> findByRepUpdatetime(Object repUpdatetime) {
 		return findByProperty(REP_UPDATETIME, repUpdatetime);
 	}
 
-	public List<IfileReplicas> findByRepStatus(Object repStatus) {
+	public List<IFileReplicas> findByRepStatus(Object repStatus) {
 		return findByProperty(REP_STATUS, repStatus);
 	}
 
-	public List<IfileReplicas> findByRepVersion(Object repVersion) {
+	public List<IFileReplicas> findByRepVersion(Object repVersion) {
 		return findByProperty(REP_VERSION, repVersion);
 	}
 
-	public List<IfileReplicas> findByRepIdx(Object repIdx) {
+	public List<IFileReplicas> findByRepIdx(Object repIdx) {
 		return findByProperty(REP_IDX, repIdx);
 	}
 
@@ -136,10 +136,10 @@ public class IfileReplicasDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public IfileReplicas merge(IfileReplicas detachedInstance) {
+	public IFileReplicas merge(IFileReplicas detachedInstance) {
 		log.debug("merging IfileReplicas instance");
 		try {
-			IfileReplicas result = (IfileReplicas) getSession().merge(
+			IFileReplicas result = (IFileReplicas) getSession().merge(
 					detachedInstance);
 			log.debug("merge successful");
 			return result;
@@ -149,7 +149,7 @@ public class IfileReplicasDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public void attachDirty(IfileReplicas instance) {
+	public void attachDirty(IFileReplicas instance) {
 		log.debug("attaching dirty IfileReplicas instance");
 		try {
 			getSession().saveOrUpdate(instance);
@@ -160,7 +160,7 @@ public class IfileReplicasDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public void attachClean(IfileReplicas instance) {
+	public void attachClean(IFileReplicas instance) {
 		log.debug("attaching clean IfileReplicas instance");
 		try {
 			getSession().lock(instance, LockMode.NONE);

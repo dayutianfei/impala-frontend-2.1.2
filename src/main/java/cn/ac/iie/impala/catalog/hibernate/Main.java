@@ -1,20 +1,20 @@
-package cn.test;
+package cn.ac.iie.impala.catalog.hibernate;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import cn.dayutianfei.dao2.IfileParams;
-import cn.dayutianfei.dao2.Ifiles;
-import cn.dayutianfei.dao2.IfilesDAO;
+import cn.ac.iie.impala.catalog.hibernate.impl.IFileParams;
+import cn.ac.iie.impala.catalog.hibernate.impl.IFiles;
+import cn.ac.iie.impala.catalog.hibernate.impl.IFilesDAO;
 
 public class Main {
 public static void main(String[] args) {
-	IfileParams params = new IfileParams();
-	Set<IfileParams> par = new HashSet<IfileParams>();
+	IFileParams params = new IFileParams();
+	Set<IFileParams> par = new HashSet<IFileParams>();
 	params.setFileKey("xx");
 	params.setFileValues("test测试");
 	par.add(params);
-	Ifiles file = new Ifiles();
+	IFiles file = new IFiles();
 	file.setFileName("xxx");
 	file.setFileType("xx");
 	file.setFileLocation("xxx");
@@ -22,12 +22,12 @@ public static void main(String[] args) {
 	file.setFileBytes(20l);
 	file.setFileStatus((short)1);
 	file.setIfileParamses(par);
-	IfilesDAO dao = new IfilesDAO();
+	IFilesDAO dao = new IFilesDAO();
 	dao.getSession().getTransaction().begin();
 	dao.save(file);
 	dao.getSession().getTransaction().commit();
 	for(Object temp : dao.findAll()){
-		System.out.println(((Ifiles)temp).getFileId());
+		System.out.println(((IFiles)temp).getFileId());
 	}
 }
 }
