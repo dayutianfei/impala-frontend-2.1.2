@@ -1,5 +1,6 @@
 package com.cloudera.impala.catalog;
 
+import com.cloudera.impala.thrift.TCatalogObjectType;
 import com.cloudera.impala.thrift.idriller.TFileReplica;
 
 /**
@@ -8,7 +9,7 @@ import com.cloudera.impala.thrift.idriller.TFileReplica;
  * @author dayutianfei
  *
  */
-public class FileReplia {
+public class FileReplia implements CatalogObject {
 
     public long id_; // 文件唯一标识，全局唯一
     
@@ -22,5 +23,30 @@ public class FileReplia {
     public long lastAccessTime_; // 文件更新时间
     public short version_;
     
+    private long catalogVersion_ = Catalog.INITIAL_CATALOG_VERSION;
+    
     public TFileReplica file_;
+
+    @Override
+    public TCatalogObjectType getCatalogObjectType() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public String getName() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public long getCatalogVersion() { return catalogVersion_; }
+
+    @Override
+    public void setCatalogVersion(long catalogVersion) {
+      catalogVersion_ = catalogVersion;
+    }
+
+    @Override
+    public boolean isLoaded() { return true; }
 }

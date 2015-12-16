@@ -3,6 +3,7 @@ package com.cloudera.impala.catalog;
 import java.util.List;
 import java.util.Map;
 
+import com.cloudera.impala.thrift.TCatalogObjectType;
 import com.cloudera.impala.thrift.idriller.TFileDescriptor;
 
 /**
@@ -10,7 +11,7 @@ import com.cloudera.impala.thrift.idriller.TFileDescriptor;
  * @author dayutianfei
  *
  */
-public class FileDescriptor {
+public class FileDescriptor implements CatalogObject {
 
     public String fileName_; // 文件名，逻辑名，副本文件共享该名字
     
@@ -28,6 +29,30 @@ public class FileDescriptor {
     
     public Map<String,String> params; //文件参数 { version:+1,  size:in bytes, record_number:128, ... }
     
+    private long catalogVersion_ = Catalog.INITIAL_CATALOG_VERSION;
     public TFileDescriptor fileDesc_;
+
+    @Override
+    public TCatalogObjectType getCatalogObjectType() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public String getName() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public long getCatalogVersion() { return catalogVersion_; }
+
+    @Override
+    public void setCatalogVersion(long catalogVersion) {
+      catalogVersion_ = catalogVersion;
+    }
+
+    @Override
+    public boolean isLoaded() { return true; }
     
 }

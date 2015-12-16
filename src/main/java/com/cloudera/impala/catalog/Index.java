@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import com.cloudera.impala.thrift.TCatalogObjectType;
 import com.cloudera.impala.thrift.idriller.TIndex;
 
 /**
@@ -14,7 +15,7 @@ import com.cloudera.impala.thrift.idriller.TIndex;
  * @since 2015-12-8
  * 
  */
-public class Index {
+public class Index implements CatalogObject{
 
     private static final Logger LOG = Logger.getLogger(Index.class);
 
@@ -53,6 +54,8 @@ public class Index {
 
     public boolean deferredRebuild; // required
     public boolean enabled; // optional
+    
+    private long catalogVersion_ = Catalog.INITIAL_CATALOG_VERSION;
 
     protected org.apache.hadoop.hive.metastore.api.Index msIndex_;
 
@@ -97,4 +100,27 @@ public class Index {
                 + ", location_=" + location_ + ", params=" + params + ", deferredRebuild=" + deferredRebuild
                 + ", enabled=" + enabled + "]";
     }
+
+    @Override
+    public TCatalogObjectType getCatalogObjectType() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public String getName() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public long getCatalogVersion() { return catalogVersion_; }
+
+    @Override
+    public void setCatalogVersion(long catalogVersion) {
+      catalogVersion_ = catalogVersion;
+    }
+
+    @Override
+    public boolean isLoaded() { return true; }
 }
