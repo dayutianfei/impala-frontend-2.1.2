@@ -239,6 +239,10 @@ terminal
   KW_EXISTS, KW_EXPLAIN, KW_EXTERNAL, KW_FALSE, KW_FIELDS, KW_FILEFORMAT, KW_FINALIZE_FN,
   KW_FIRST, KW_FLOAT, KW_FOLLOWING, KW_FOR, KW_FORMAT, KW_FORMATTED, KW_FROM, KW_FULL,
   KW_FUNCTION, KW_FUNCTIONS, KW_GRANT, KW_GROUP, KW_HAVING, KW_IF, KW_IN, KW_INCREMENTAL,
+  
+  //add by liubb
+  KW_INDEX, KW_INDICES, KW_DEFERRED, KW_REBUILD, KW_IDXPROPERTIES,  
+  
   KW_INIT_FN, KW_INNER, KW_INPATH, KW_INSERT, KW_INT, KW_INTERMEDIATE, KW_INTERVAL,
   KW_INTO, KW_INVALIDATE, KW_IS, KW_JOIN, KW_LAST, KW_LEFT, KW_LIKE, KW_LIMIT, KW_LINES,
   KW_LOAD, KW_LOCATION, KW_MAP, KW_MERGE_FN, KW_METADATA, KW_NOT, KW_NULL, KW_NULLS,
@@ -352,6 +356,15 @@ nonterminal ArrayList<PartitionKeyValue> partition_key_value_list;
 nonterminal PartitionKeyValue partition_key_value;
 nonterminal PartitionKeyValue static_partition_key_value;
 nonterminal Qualifier union_op;
+
+//add by liubb
+nonterminal ShowIndicesStmt show_indices_stmt;
+nonterminal DescribeIndexStmt desc_index_stmt;
+nonterminal DropIndexStmt drop_index_stmt;
+nonterminal AlterIndexStmt alter_index_stmt;
+nonterminal CreateIndexStmt create_index_stmt;
+nonterminal Boolean if_with_deferred_rebuild;
+nonterminal HashMap index_properties;
 
 nonterminal AlterTableStmt alter_tbl_stmt;
 nonterminal StatementBase alter_view_stmt;
@@ -539,6 +552,20 @@ stmt ::=
   {: RESULT = set; :}
   | show_roles_stmt:show_roles
   {: RESULT = show_roles; :}
+  
+  //add by liubb
+  | show_indices_stmt:show_indices
+  {: RESULT = show_indices; :}
+  | desc_index_stmt:desc_index
+  {: RESULT = desc_index; :}
+
+  | drop_index_stmt:drop_index
+  {: RESULT = drop_index; :}
+  | create_index_stmt:create_index
+  {: RESULT = create_index; :}
+  | alter_index_stmt:alter_index
+  {: RESULT = alter_index; :}
+  
   | show_grant_role_stmt:show_grant_role
   {: RESULT = show_grant_role; :}
   | create_drop_role_stmt:create_drop_role
@@ -1619,6 +1646,53 @@ show_functions_stmt ::=
   {: RESULT = new ShowFunctionsStmt(db, showPattern, fn_type); :}
   ;
 
+//add by liubb
+show_indices_stmt ::=
+  KW_SHOW KW_INDICES table_name:table
+  {: RESULT = new ShowIndicesStmt(table); :}
+  ;
+  
+//add by liubb  
+desc_index_stmt ::=
+  KW_DESCRIBE KW_INDEX table_name:table IDENT:index_name
+  {: RESULT = new DescribeIndexStmt(table, index_name); :}
+  ;
+//add by liubb
+drop_index_stmt ::=
+  KW_DROP KW_INDEX IDENT:index_name KW_ON table_name:table opt_partition_spec:partition
+  {: RESULT = new DropIndexStmt(index_name, table, partition); :}
+  ;
+
+//add by liubb
+create_index_stmt ::=
+  KW_CREATE KW_INDEX IDENT:index_name KW_ON KW_TABLE table_name:tbl_name
+  LPAREN opt_ident_list:col_perm RPAREN KW_AS IDENT:index_type
+  if_with_deferred_rebuild:w index_properties:index_properties
+  {: RESULT = new CreateIndexStmt(index_name, tbl_name,col_perm, index_type, 
+  		w, index_properties); :}
+  ;
+
+//add by liubb
+if_with_deferred_rebuild ::=
+  KW_WITH KW_DEFERRED KW_REBUILD
+  {: RESULT = true; :}
+  |
+  {: RESULT = false; :}
+  ;
+ 
+//add by liubb
+index_properties ::=
+  KW_IDXPROPERTIES LPAREN properties_map:map RPAREN
+  {: RESULT = map; :}
+  |
+  {: RESULT = null; :}
+  ;
+
+//add by liubb
+alter_index_stmt ::=
+  KW_ALTER KW_INDEX IDENT:index_name KW_ON table_name:table opt_partition_spec:partition KW_REBUILD
+  {: RESULT = new AlterIndexStmt(index_name, table, partition); :}
+  ;
 opt_function_category ::=
   KW_AGGREGATE
   {: RESULT = TFunctionCategory.AGGREGATE; :}

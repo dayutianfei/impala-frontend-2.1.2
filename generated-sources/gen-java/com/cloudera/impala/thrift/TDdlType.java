@@ -33,7 +33,12 @@ public enum TDdlType implements org.apache.thrift.TEnum {
   GRANT_ROLE(18),
   REVOKE_ROLE(19),
   GRANT_PRIVILEGE(20),
-  REVOKE_PRIVILEGE(21);
+  REVOKE_PRIVILEGE(21),
+  DROP_INDEX(22),
+  ALTER_INDEX(23),
+  CREATE_INDEX(24),
+  DESCRIBE_INDEX(25),
+  SHOW_INDICES(26);
 
   private final int value;
 
@@ -98,6 +103,16 @@ public enum TDdlType implements org.apache.thrift.TEnum {
         return GRANT_PRIVILEGE;
       case 21:
         return REVOKE_PRIVILEGE;
+      case 22:
+        return DROP_INDEX;
+      case 23:
+        return ALTER_INDEX;
+      case 24:
+        return CREATE_INDEX;
+      case 25:
+        return DESCRIBE_INDEX;
+      case 26:
+        return SHOW_INDICES;
       default:
         return null;
     }

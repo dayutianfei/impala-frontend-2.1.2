@@ -6,6 +6,7 @@
  */
 package com.cloudera.impala.thrift.idriller;
 
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.thrift.scheme.IScheme;
 import org.apache.thrift.scheme.SchemeFactory;
 import org.apache.thrift.scheme.StandardScheme;
@@ -675,7 +676,49 @@ public class TFileDescriptor implements org.apache.thrift.TBase<TFileDescriptor,
 
   @Override
   public int hashCode() {
-    return 0;
+    HashCodeBuilder builder = new HashCodeBuilder();
+
+    boolean present_name = true && (isSetName());
+    builder.append(present_name);
+    if (present_name)
+      builder.append(name);
+
+    boolean present_location = true && (isSetLocation());
+    builder.append(present_location);
+    if (present_location)
+      builder.append(location);
+
+    boolean present_fileType = true && (isSetFileType());
+    builder.append(present_fileType);
+    if (present_fileType)
+      builder.append(fileType);
+
+    boolean present_status = true && (isSetStatus());
+    builder.append(present_status);
+    if (present_status)
+      builder.append(status);
+
+    boolean present_lastAccessTime = true && (isSetLastAccessTime());
+    builder.append(present_lastAccessTime);
+    if (present_lastAccessTime)
+      builder.append(lastAccessTime);
+
+    boolean present_createTime = true && (isSetCreateTime());
+    builder.append(present_createTime);
+    if (present_createTime)
+      builder.append(createTime);
+
+    boolean present_fileReplicas = true && (isSetFileReplicas());
+    builder.append(present_fileReplicas);
+    if (present_fileReplicas)
+      builder.append(fileReplicas);
+
+    boolean present_parameters = true && (isSetParameters());
+    builder.append(present_parameters);
+    if (present_parameters)
+      builder.append(parameters);
+
+    return builder.toHashCode();
   }
 
   public int compareTo(TFileDescriptor other) {

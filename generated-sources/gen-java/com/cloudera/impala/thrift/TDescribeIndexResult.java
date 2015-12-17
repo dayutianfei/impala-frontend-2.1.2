@@ -31,22 +31,22 @@ import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TGetJvmMetricsResponse implements org.apache.thrift.TBase<TGetJvmMetricsResponse, TGetJvmMetricsResponse._Fields>, java.io.Serializable, Cloneable {
-  private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("TGetJvmMetricsResponse");
+public class TDescribeIndexResult implements org.apache.thrift.TBase<TDescribeIndexResult, TDescribeIndexResult._Fields>, java.io.Serializable, Cloneable {
+  private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("TDescribeIndexResult");
 
-  private static final org.apache.thrift.protocol.TField MEMORY_POOLS_FIELD_DESC = new org.apache.thrift.protocol.TField("memory_pools", org.apache.thrift.protocol.TType.LIST, (short)1);
+  private static final org.apache.thrift.protocol.TField RESULTS_FIELD_DESC = new org.apache.thrift.protocol.TField("results", org.apache.thrift.protocol.TType.LIST, (short)1);
 
   private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
   static {
-    schemes.put(StandardScheme.class, new TGetJvmMetricsResponseStandardSchemeFactory());
-    schemes.put(TupleScheme.class, new TGetJvmMetricsResponseTupleSchemeFactory());
+    schemes.put(StandardScheme.class, new TDescribeIndexResultStandardSchemeFactory());
+    schemes.put(TupleScheme.class, new TDescribeIndexResultTupleSchemeFactory());
   }
 
-  public List<TJvmMemoryPool> memory_pools; // required
+  public List<com.cloudera.impala.thrift.TResultRow> results; // required
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-    MEMORY_POOLS((short)1, "memory_pools");
+    RESULTS((short)1, "results");
 
     private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
 
@@ -61,8 +61,8 @@ public class TGetJvmMetricsResponse implements org.apache.thrift.TBase<TGetJvmMe
      */
     public static _Fields findByThriftId(int fieldId) {
       switch(fieldId) {
-        case 1: // MEMORY_POOLS
-          return MEMORY_POOLS;
+        case 1: // RESULTS
+          return RESULTS;
         default:
           return null;
       }
@@ -106,91 +106,91 @@ public class TGetJvmMetricsResponse implements org.apache.thrift.TBase<TGetJvmMe
   public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-    tmpMap.put(_Fields.MEMORY_POOLS, new org.apache.thrift.meta_data.FieldMetaData("memory_pools", org.apache.thrift.TFieldRequirementType.REQUIRED, 
+    tmpMap.put(_Fields.RESULTS, new org.apache.thrift.meta_data.FieldMetaData("results", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
-            new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, TJvmMemoryPool.class))));
+            new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.cloudera.impala.thrift.TResultRow.class))));
     metaDataMap = Collections.unmodifiableMap(tmpMap);
-    org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(TGetJvmMetricsResponse.class, metaDataMap);
+    org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(TDescribeIndexResult.class, metaDataMap);
   }
 
-  public TGetJvmMetricsResponse() {
+  public TDescribeIndexResult() {
   }
 
-  public TGetJvmMetricsResponse(
-    List<TJvmMemoryPool> memory_pools)
+  public TDescribeIndexResult(
+    List<com.cloudera.impala.thrift.TResultRow> results)
   {
     this();
-    this.memory_pools = memory_pools;
+    this.results = results;
   }
 
   /**
    * Performs a deep copy on <i>other</i>.
    */
-  public TGetJvmMetricsResponse(TGetJvmMetricsResponse other) {
-    if (other.isSetMemory_pools()) {
-      List<TJvmMemoryPool> __this__memory_pools = new ArrayList<TJvmMemoryPool>();
-      for (TJvmMemoryPool other_element : other.memory_pools) {
-        __this__memory_pools.add(new TJvmMemoryPool(other_element));
+  public TDescribeIndexResult(TDescribeIndexResult other) {
+    if (other.isSetResults()) {
+      List<com.cloudera.impala.thrift.TResultRow> __this__results = new ArrayList<com.cloudera.impala.thrift.TResultRow>();
+      for (com.cloudera.impala.thrift.TResultRow other_element : other.results) {
+        __this__results.add(new com.cloudera.impala.thrift.TResultRow(other_element));
       }
-      this.memory_pools = __this__memory_pools;
+      this.results = __this__results;
     }
   }
 
-  public TGetJvmMetricsResponse deepCopy() {
-    return new TGetJvmMetricsResponse(this);
+  public TDescribeIndexResult deepCopy() {
+    return new TDescribeIndexResult(this);
   }
 
   @Override
   public void clear() {
-    this.memory_pools = null;
+    this.results = null;
   }
 
-  public int getMemory_poolsSize() {
-    return (this.memory_pools == null) ? 0 : this.memory_pools.size();
+  public int getResultsSize() {
+    return (this.results == null) ? 0 : this.results.size();
   }
 
-  public java.util.Iterator<TJvmMemoryPool> getMemory_poolsIterator() {
-    return (this.memory_pools == null) ? null : this.memory_pools.iterator();
+  public java.util.Iterator<com.cloudera.impala.thrift.TResultRow> getResultsIterator() {
+    return (this.results == null) ? null : this.results.iterator();
   }
 
-  public void addToMemory_pools(TJvmMemoryPool elem) {
-    if (this.memory_pools == null) {
-      this.memory_pools = new ArrayList<TJvmMemoryPool>();
+  public void addToResults(com.cloudera.impala.thrift.TResultRow elem) {
+    if (this.results == null) {
+      this.results = new ArrayList<com.cloudera.impala.thrift.TResultRow>();
     }
-    this.memory_pools.add(elem);
+    this.results.add(elem);
   }
 
-  public List<TJvmMemoryPool> getMemory_pools() {
-    return this.memory_pools;
+  public List<com.cloudera.impala.thrift.TResultRow> getResults() {
+    return this.results;
   }
 
-  public TGetJvmMetricsResponse setMemory_pools(List<TJvmMemoryPool> memory_pools) {
-    this.memory_pools = memory_pools;
+  public TDescribeIndexResult setResults(List<com.cloudera.impala.thrift.TResultRow> results) {
+    this.results = results;
     return this;
   }
 
-  public void unsetMemory_pools() {
-    this.memory_pools = null;
+  public void unsetResults() {
+    this.results = null;
   }
 
-  /** Returns true if field memory_pools is set (has been assigned a value) and false otherwise */
-  public boolean isSetMemory_pools() {
-    return this.memory_pools != null;
+  /** Returns true if field results is set (has been assigned a value) and false otherwise */
+  public boolean isSetResults() {
+    return this.results != null;
   }
 
-  public void setMemory_poolsIsSet(boolean value) {
+  public void setResultsIsSet(boolean value) {
     if (!value) {
-      this.memory_pools = null;
+      this.results = null;
     }
   }
 
   public void setFieldValue(_Fields field, Object value) {
     switch (field) {
-    case MEMORY_POOLS:
+    case RESULTS:
       if (value == null) {
-        unsetMemory_pools();
+        unsetResults();
       } else {
-        setMemory_pools((List<TJvmMemoryPool>)value);
+        setResults((List<com.cloudera.impala.thrift.TResultRow>)value);
       }
       break;
 
@@ -199,8 +199,8 @@ public class TGetJvmMetricsResponse implements org.apache.thrift.TBase<TGetJvmMe
 
   public Object getFieldValue(_Fields field) {
     switch (field) {
-    case MEMORY_POOLS:
-      return getMemory_pools();
+    case RESULTS:
+      return getResults();
 
     }
     throw new IllegalStateException();
@@ -213,8 +213,8 @@ public class TGetJvmMetricsResponse implements org.apache.thrift.TBase<TGetJvmMe
     }
 
     switch (field) {
-    case MEMORY_POOLS:
-      return isSetMemory_pools();
+    case RESULTS:
+      return isSetResults();
     }
     throw new IllegalStateException();
   }
@@ -223,21 +223,21 @@ public class TGetJvmMetricsResponse implements org.apache.thrift.TBase<TGetJvmMe
   public boolean equals(Object that) {
     if (that == null)
       return false;
-    if (that instanceof TGetJvmMetricsResponse)
-      return this.equals((TGetJvmMetricsResponse)that);
+    if (that instanceof TDescribeIndexResult)
+      return this.equals((TDescribeIndexResult)that);
     return false;
   }
 
-  public boolean equals(TGetJvmMetricsResponse that) {
+  public boolean equals(TDescribeIndexResult that) {
     if (that == null)
       return false;
 
-    boolean this_present_memory_pools = true && this.isSetMemory_pools();
-    boolean that_present_memory_pools = true && that.isSetMemory_pools();
-    if (this_present_memory_pools || that_present_memory_pools) {
-      if (!(this_present_memory_pools && that_present_memory_pools))
+    boolean this_present_results = true && this.isSetResults();
+    boolean that_present_results = true && that.isSetResults();
+    if (this_present_results || that_present_results) {
+      if (!(this_present_results && that_present_results))
         return false;
-      if (!this.memory_pools.equals(that.memory_pools))
+      if (!this.results.equals(that.results))
         return false;
     }
 
@@ -248,28 +248,28 @@ public class TGetJvmMetricsResponse implements org.apache.thrift.TBase<TGetJvmMe
   public int hashCode() {
     HashCodeBuilder builder = new HashCodeBuilder();
 
-    boolean present_memory_pools = true && (isSetMemory_pools());
-    builder.append(present_memory_pools);
-    if (present_memory_pools)
-      builder.append(memory_pools);
+    boolean present_results = true && (isSetResults());
+    builder.append(present_results);
+    if (present_results)
+      builder.append(results);
 
     return builder.toHashCode();
   }
 
-  public int compareTo(TGetJvmMetricsResponse other) {
+  public int compareTo(TDescribeIndexResult other) {
     if (!getClass().equals(other.getClass())) {
       return getClass().getName().compareTo(other.getClass().getName());
     }
 
     int lastComparison = 0;
-    TGetJvmMetricsResponse typedOther = (TGetJvmMetricsResponse)other;
+    TDescribeIndexResult typedOther = (TDescribeIndexResult)other;
 
-    lastComparison = Boolean.valueOf(isSetMemory_pools()).compareTo(typedOther.isSetMemory_pools());
+    lastComparison = Boolean.valueOf(isSetResults()).compareTo(typedOther.isSetResults());
     if (lastComparison != 0) {
       return lastComparison;
     }
-    if (isSetMemory_pools()) {
-      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.memory_pools, typedOther.memory_pools);
+    if (isSetResults()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.results, typedOther.results);
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -291,14 +291,14 @@ public class TGetJvmMetricsResponse implements org.apache.thrift.TBase<TGetJvmMe
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder("TGetJvmMetricsResponse(");
+    StringBuilder sb = new StringBuilder("TDescribeIndexResult(");
     boolean first = true;
 
-    sb.append("memory_pools:");
-    if (this.memory_pools == null) {
+    sb.append("results:");
+    if (this.results == null) {
       sb.append("null");
     } else {
-      sb.append(this.memory_pools);
+      sb.append(this.results);
     }
     first = false;
     sb.append(")");
@@ -307,8 +307,8 @@ public class TGetJvmMetricsResponse implements org.apache.thrift.TBase<TGetJvmMe
 
   public void validate() throws org.apache.thrift.TException {
     // check for required fields
-    if (memory_pools == null) {
-      throw new org.apache.thrift.protocol.TProtocolException("Required field 'memory_pools' was not present! Struct: " + toString());
+    if (results == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'results' was not present! Struct: " + toString());
     }
     // check for sub-struct validity
   }
@@ -329,15 +329,15 @@ public class TGetJvmMetricsResponse implements org.apache.thrift.TBase<TGetJvmMe
     }
   }
 
-  private static class TGetJvmMetricsResponseStandardSchemeFactory implements SchemeFactory {
-    public TGetJvmMetricsResponseStandardScheme getScheme() {
-      return new TGetJvmMetricsResponseStandardScheme();
+  private static class TDescribeIndexResultStandardSchemeFactory implements SchemeFactory {
+    public TDescribeIndexResultStandardScheme getScheme() {
+      return new TDescribeIndexResultStandardScheme();
     }
   }
 
-  private static class TGetJvmMetricsResponseStandardScheme extends StandardScheme<TGetJvmMetricsResponse> {
+  private static class TDescribeIndexResultStandardScheme extends StandardScheme<TDescribeIndexResult> {
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot, TGetJvmMetricsResponse struct) throws org.apache.thrift.TException {
+    public void read(org.apache.thrift.protocol.TProtocol iprot, TDescribeIndexResult struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TField schemeField;
       iprot.readStructBegin();
       while (true)
@@ -347,21 +347,21 @@ public class TGetJvmMetricsResponse implements org.apache.thrift.TBase<TGetJvmMe
           break;
         }
         switch (schemeField.id) {
-          case 1: // MEMORY_POOLS
+          case 1: // RESULTS
             if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
               {
-                org.apache.thrift.protocol.TList _list202 = iprot.readListBegin();
-                struct.memory_pools = new ArrayList<TJvmMemoryPool>(_list202.size);
-                for (int _i203 = 0; _i203 < _list202.size; ++_i203)
+                org.apache.thrift.protocol.TList _list96 = iprot.readListBegin();
+                struct.results = new ArrayList<com.cloudera.impala.thrift.TResultRow>(_list96.size);
+                for (int _i97 = 0; _i97 < _list96.size; ++_i97)
                 {
-                  TJvmMemoryPool _elem204; // required
-                  _elem204 = new TJvmMemoryPool();
-                  _elem204.read(iprot);
-                  struct.memory_pools.add(_elem204);
+                  com.cloudera.impala.thrift.TResultRow _elem98; // required
+                  _elem98 = new com.cloudera.impala.thrift.TResultRow();
+                  _elem98.read(iprot);
+                  struct.results.add(_elem98);
                 }
                 iprot.readListEnd();
               }
-              struct.setMemory_poolsIsSet(true);
+              struct.setResultsIsSet(true);
             } else { 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
@@ -377,17 +377,17 @@ public class TGetJvmMetricsResponse implements org.apache.thrift.TBase<TGetJvmMe
       struct.validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot, TGetJvmMetricsResponse struct) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift.protocol.TProtocol oprot, TDescribeIndexResult struct) throws org.apache.thrift.TException {
       struct.validate();
 
       oprot.writeStructBegin(STRUCT_DESC);
-      if (struct.memory_pools != null) {
-        oprot.writeFieldBegin(MEMORY_POOLS_FIELD_DESC);
+      if (struct.results != null) {
+        oprot.writeFieldBegin(RESULTS_FIELD_DESC);
         {
-          oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.memory_pools.size()));
-          for (TJvmMemoryPool _iter205 : struct.memory_pools)
+          oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.results.size()));
+          for (com.cloudera.impala.thrift.TResultRow _iter99 : struct.results)
           {
-            _iter205.write(oprot);
+            _iter99.write(oprot);
           }
           oprot.writeListEnd();
         }
@@ -399,41 +399,41 @@ public class TGetJvmMetricsResponse implements org.apache.thrift.TBase<TGetJvmMe
 
   }
 
-  private static class TGetJvmMetricsResponseTupleSchemeFactory implements SchemeFactory {
-    public TGetJvmMetricsResponseTupleScheme getScheme() {
-      return new TGetJvmMetricsResponseTupleScheme();
+  private static class TDescribeIndexResultTupleSchemeFactory implements SchemeFactory {
+    public TDescribeIndexResultTupleScheme getScheme() {
+      return new TDescribeIndexResultTupleScheme();
     }
   }
 
-  private static class TGetJvmMetricsResponseTupleScheme extends TupleScheme<TGetJvmMetricsResponse> {
+  private static class TDescribeIndexResultTupleScheme extends TupleScheme<TDescribeIndexResult> {
 
     @Override
-    public void write(org.apache.thrift.protocol.TProtocol prot, TGetJvmMetricsResponse struct) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift.protocol.TProtocol prot, TDescribeIndexResult struct) throws org.apache.thrift.TException {
       TTupleProtocol oprot = (TTupleProtocol) prot;
       {
-        oprot.writeI32(struct.memory_pools.size());
-        for (TJvmMemoryPool _iter206 : struct.memory_pools)
+        oprot.writeI32(struct.results.size());
+        for (com.cloudera.impala.thrift.TResultRow _iter100 : struct.results)
         {
-          _iter206.write(oprot);
+          _iter100.write(oprot);
         }
       }
     }
 
     @Override
-    public void read(org.apache.thrift.protocol.TProtocol prot, TGetJvmMetricsResponse struct) throws org.apache.thrift.TException {
+    public void read(org.apache.thrift.protocol.TProtocol prot, TDescribeIndexResult struct) throws org.apache.thrift.TException {
       TTupleProtocol iprot = (TTupleProtocol) prot;
       {
-        org.apache.thrift.protocol.TList _list207 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-        struct.memory_pools = new ArrayList<TJvmMemoryPool>(_list207.size);
-        for (int _i208 = 0; _i208 < _list207.size; ++_i208)
+        org.apache.thrift.protocol.TList _list101 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+        struct.results = new ArrayList<com.cloudera.impala.thrift.TResultRow>(_list101.size);
+        for (int _i102 = 0; _i102 < _list101.size; ++_i102)
         {
-          TJvmMemoryPool _elem209; // required
-          _elem209 = new TJvmMemoryPool();
-          _elem209.read(iprot);
-          struct.memory_pools.add(_elem209);
+          com.cloudera.impala.thrift.TResultRow _elem103; // required
+          _elem103 = new com.cloudera.impala.thrift.TResultRow();
+          _elem103.read(iprot);
+          struct.results.add(_elem103);
         }
       }
-      struct.setMemory_poolsIsSet(true);
+      struct.setResultsIsSet(true);
     }
   }
 

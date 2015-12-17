@@ -6,6 +6,7 @@
  */
 package com.cloudera.impala.thrift.idriller;
 
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.thrift.scheme.IScheme;
 import org.apache.thrift.scheme.SchemeFactory;
 import org.apache.thrift.scheme.StandardScheme;
@@ -625,7 +626,49 @@ public class TFileReplica implements org.apache.thrift.TBase<TFileReplica, TFile
 
   @Override
   public int hashCode() {
-    return 0;
+    HashCodeBuilder builder = new HashCodeBuilder();
+
+    boolean present_id = true;
+    builder.append(present_id);
+    if (present_id)
+      builder.append(id);
+
+    boolean present_location = true && (isSetLocation());
+    builder.append(present_location);
+    if (present_location)
+      builder.append(location);
+
+    boolean present_nodeName = true && (isSetNodeName());
+    builder.append(present_nodeName);
+    if (present_nodeName)
+      builder.append(nodeName);
+
+    boolean present_diskName = true && (isSetDiskName());
+    builder.append(present_diskName);
+    if (present_diskName)
+      builder.append(diskName);
+
+    boolean present_status = true && (isSetStatus());
+    builder.append(present_status);
+    if (present_status)
+      builder.append(status);
+
+    boolean present_lastAccessTime = true && (isSetLastAccessTime());
+    builder.append(present_lastAccessTime);
+    if (present_lastAccessTime)
+      builder.append(lastAccessTime);
+
+    boolean present_createTime = true && (isSetCreateTime());
+    builder.append(present_createTime);
+    if (present_createTime)
+      builder.append(createTime);
+
+    boolean present_version = true && (isSetVersion());
+    builder.append(present_version);
+    if (present_version)
+      builder.append(version);
+
+    return builder.toHashCode();
   }
 
   public int compareTo(TFileReplica other) {

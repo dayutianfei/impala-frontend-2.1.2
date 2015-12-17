@@ -31,31 +31,28 @@ import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TLoadDataReq implements org.apache.thrift.TBase<TLoadDataReq, TLoadDataReq._Fields>, java.io.Serializable, Cloneable {
-  private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("TLoadDataReq");
+public class TAlterIndexParms implements org.apache.thrift.TBase<TAlterIndexParms, TAlterIndexParms._Fields>, java.io.Serializable, Cloneable {
+  private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("TAlterIndexParms");
 
-  private static final org.apache.thrift.protocol.TField TABLE_NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("table_name", org.apache.thrift.protocol.TType.STRUCT, (short)1);
-  private static final org.apache.thrift.protocol.TField SOURCE_PATH_FIELD_DESC = new org.apache.thrift.protocol.TField("source_path", org.apache.thrift.protocol.TType.STRING, (short)2);
-  private static final org.apache.thrift.protocol.TField OVERWRITE_FIELD_DESC = new org.apache.thrift.protocol.TField("overwrite", org.apache.thrift.protocol.TType.BOOL, (short)3);
-  private static final org.apache.thrift.protocol.TField PARTITION_SPEC_FIELD_DESC = new org.apache.thrift.protocol.TField("partition_spec", org.apache.thrift.protocol.TType.LIST, (short)4);
+  private static final org.apache.thrift.protocol.TField INDEX_NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("index_name", org.apache.thrift.protocol.TType.STRING, (short)1);
+  private static final org.apache.thrift.protocol.TField TABLE_NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("table_name", org.apache.thrift.protocol.TType.STRUCT, (short)2);
+  private static final org.apache.thrift.protocol.TField PARTITION_SPEC_FIELD_DESC = new org.apache.thrift.protocol.TField("partition_spec", org.apache.thrift.protocol.TType.LIST, (short)3);
 
   private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
   static {
-    schemes.put(StandardScheme.class, new TLoadDataReqStandardSchemeFactory());
-    schemes.put(TupleScheme.class, new TLoadDataReqTupleSchemeFactory());
+    schemes.put(StandardScheme.class, new TAlterIndexParmsStandardSchemeFactory());
+    schemes.put(TupleScheme.class, new TAlterIndexParmsTupleSchemeFactory());
   }
 
+  public String index_name; // required
   public com.cloudera.impala.thrift.TTableName table_name; // required
-  public String source_path; // required
-  public boolean overwrite; // required
   public List<com.cloudera.impala.thrift.TPartitionKeyValue> partition_spec; // optional
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-    TABLE_NAME((short)1, "table_name"),
-    SOURCE_PATH((short)2, "source_path"),
-    OVERWRITE((short)3, "overwrite"),
-    PARTITION_SPEC((short)4, "partition_spec");
+    INDEX_NAME((short)1, "index_name"),
+    TABLE_NAME((short)2, "table_name"),
+    PARTITION_SPEC((short)3, "partition_spec");
 
     private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
 
@@ -70,13 +67,11 @@ public class TLoadDataReq implements org.apache.thrift.TBase<TLoadDataReq, TLoad
      */
     public static _Fields findByThriftId(int fieldId) {
       switch(fieldId) {
-        case 1: // TABLE_NAME
+        case 1: // INDEX_NAME
+          return INDEX_NAME;
+        case 2: // TABLE_NAME
           return TABLE_NAME;
-        case 2: // SOURCE_PATH
-          return SOURCE_PATH;
-        case 3: // OVERWRITE
-          return OVERWRITE;
-        case 4: // PARTITION_SPEC
+        case 3: // PARTITION_SPEC
           return PARTITION_SPEC;
         default:
           return null;
@@ -118,52 +113,43 @@ public class TLoadDataReq implements org.apache.thrift.TBase<TLoadDataReq, TLoad
   }
 
   // isset id assignments
-  private static final int __OVERWRITE_ISSET_ID = 0;
-  private byte __isset_bitfield = 0;
   private _Fields optionals[] = {_Fields.PARTITION_SPEC};
   public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+    tmpMap.put(_Fields.INDEX_NAME, new org.apache.thrift.meta_data.FieldMetaData("index_name", org.apache.thrift.TFieldRequirementType.REQUIRED, 
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.TABLE_NAME, new org.apache.thrift.meta_data.FieldMetaData("table_name", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.cloudera.impala.thrift.TTableName.class)));
-    tmpMap.put(_Fields.SOURCE_PATH, new org.apache.thrift.meta_data.FieldMetaData("source_path", org.apache.thrift.TFieldRequirementType.REQUIRED, 
-        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.OVERWRITE, new org.apache.thrift.meta_data.FieldMetaData("overwrite", org.apache.thrift.TFieldRequirementType.REQUIRED, 
-        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BOOL)));
     tmpMap.put(_Fields.PARTITION_SPEC, new org.apache.thrift.meta_data.FieldMetaData("partition_spec", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
         new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
             new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.cloudera.impala.thrift.TPartitionKeyValue.class))));
     metaDataMap = Collections.unmodifiableMap(tmpMap);
-    org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(TLoadDataReq.class, metaDataMap);
+    org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(TAlterIndexParms.class, metaDataMap);
   }
 
-  public TLoadDataReq() {
+  public TAlterIndexParms() {
   }
 
-  public TLoadDataReq(
-    com.cloudera.impala.thrift.TTableName table_name,
-    String source_path,
-    boolean overwrite)
+  public TAlterIndexParms(
+    String index_name,
+    com.cloudera.impala.thrift.TTableName table_name)
   {
     this();
+    this.index_name = index_name;
     this.table_name = table_name;
-    this.source_path = source_path;
-    this.overwrite = overwrite;
-    setOverwriteIsSet(true);
   }
 
   /**
    * Performs a deep copy on <i>other</i>.
    */
-  public TLoadDataReq(TLoadDataReq other) {
-    __isset_bitfield = other.__isset_bitfield;
+  public TAlterIndexParms(TAlterIndexParms other) {
+    if (other.isSetIndex_name()) {
+      this.index_name = other.index_name;
+    }
     if (other.isSetTable_name()) {
       this.table_name = new com.cloudera.impala.thrift.TTableName(other.table_name);
     }
-    if (other.isSetSource_path()) {
-      this.source_path = other.source_path;
-    }
-    this.overwrite = other.overwrite;
     if (other.isSetPartition_spec()) {
       List<com.cloudera.impala.thrift.TPartitionKeyValue> __this__partition_spec = new ArrayList<com.cloudera.impala.thrift.TPartitionKeyValue>();
       for (com.cloudera.impala.thrift.TPartitionKeyValue other_element : other.partition_spec) {
@@ -173,24 +159,46 @@ public class TLoadDataReq implements org.apache.thrift.TBase<TLoadDataReq, TLoad
     }
   }
 
-  public TLoadDataReq deepCopy() {
-    return new TLoadDataReq(this);
+  public TAlterIndexParms deepCopy() {
+    return new TAlterIndexParms(this);
   }
 
   @Override
   public void clear() {
+    this.index_name = null;
     this.table_name = null;
-    this.source_path = null;
-    setOverwriteIsSet(false);
-    this.overwrite = false;
     this.partition_spec = null;
+  }
+
+  public String getIndex_name() {
+    return this.index_name;
+  }
+
+  public TAlterIndexParms setIndex_name(String index_name) {
+    this.index_name = index_name;
+    return this;
+  }
+
+  public void unsetIndex_name() {
+    this.index_name = null;
+  }
+
+  /** Returns true if field index_name is set (has been assigned a value) and false otherwise */
+  public boolean isSetIndex_name() {
+    return this.index_name != null;
+  }
+
+  public void setIndex_nameIsSet(boolean value) {
+    if (!value) {
+      this.index_name = null;
+    }
   }
 
   public com.cloudera.impala.thrift.TTableName getTable_name() {
     return this.table_name;
   }
 
-  public TLoadDataReq setTable_name(com.cloudera.impala.thrift.TTableName table_name) {
+  public TAlterIndexParms setTable_name(com.cloudera.impala.thrift.TTableName table_name) {
     this.table_name = table_name;
     return this;
   }
@@ -208,53 +216,6 @@ public class TLoadDataReq implements org.apache.thrift.TBase<TLoadDataReq, TLoad
     if (!value) {
       this.table_name = null;
     }
-  }
-
-  public String getSource_path() {
-    return this.source_path;
-  }
-
-  public TLoadDataReq setSource_path(String source_path) {
-    this.source_path = source_path;
-    return this;
-  }
-
-  public void unsetSource_path() {
-    this.source_path = null;
-  }
-
-  /** Returns true if field source_path is set (has been assigned a value) and false otherwise */
-  public boolean isSetSource_path() {
-    return this.source_path != null;
-  }
-
-  public void setSource_pathIsSet(boolean value) {
-    if (!value) {
-      this.source_path = null;
-    }
-  }
-
-  public boolean isOverwrite() {
-    return this.overwrite;
-  }
-
-  public TLoadDataReq setOverwrite(boolean overwrite) {
-    this.overwrite = overwrite;
-    setOverwriteIsSet(true);
-    return this;
-  }
-
-  public void unsetOverwrite() {
-    __isset_bitfield = EncodingUtils.clearBit(__isset_bitfield, __OVERWRITE_ISSET_ID);
-  }
-
-  /** Returns true if field overwrite is set (has been assigned a value) and false otherwise */
-  public boolean isSetOverwrite() {
-    return EncodingUtils.testBit(__isset_bitfield, __OVERWRITE_ISSET_ID);
-  }
-
-  public void setOverwriteIsSet(boolean value) {
-    __isset_bitfield = EncodingUtils.setBit(__isset_bitfield, __OVERWRITE_ISSET_ID, value);
   }
 
   public int getPartition_specSize() {
@@ -276,7 +237,7 @@ public class TLoadDataReq implements org.apache.thrift.TBase<TLoadDataReq, TLoad
     return this.partition_spec;
   }
 
-  public TLoadDataReq setPartition_spec(List<com.cloudera.impala.thrift.TPartitionKeyValue> partition_spec) {
+  public TAlterIndexParms setPartition_spec(List<com.cloudera.impala.thrift.TPartitionKeyValue> partition_spec) {
     this.partition_spec = partition_spec;
     return this;
   }
@@ -298,27 +259,19 @@ public class TLoadDataReq implements org.apache.thrift.TBase<TLoadDataReq, TLoad
 
   public void setFieldValue(_Fields field, Object value) {
     switch (field) {
+    case INDEX_NAME:
+      if (value == null) {
+        unsetIndex_name();
+      } else {
+        setIndex_name((String)value);
+      }
+      break;
+
     case TABLE_NAME:
       if (value == null) {
         unsetTable_name();
       } else {
         setTable_name((com.cloudera.impala.thrift.TTableName)value);
-      }
-      break;
-
-    case SOURCE_PATH:
-      if (value == null) {
-        unsetSource_path();
-      } else {
-        setSource_path((String)value);
-      }
-      break;
-
-    case OVERWRITE:
-      if (value == null) {
-        unsetOverwrite();
-      } else {
-        setOverwrite((Boolean)value);
       }
       break;
 
@@ -335,14 +288,11 @@ public class TLoadDataReq implements org.apache.thrift.TBase<TLoadDataReq, TLoad
 
   public Object getFieldValue(_Fields field) {
     switch (field) {
+    case INDEX_NAME:
+      return getIndex_name();
+
     case TABLE_NAME:
       return getTable_name();
-
-    case SOURCE_PATH:
-      return getSource_path();
-
-    case OVERWRITE:
-      return Boolean.valueOf(isOverwrite());
 
     case PARTITION_SPEC:
       return getPartition_spec();
@@ -358,12 +308,10 @@ public class TLoadDataReq implements org.apache.thrift.TBase<TLoadDataReq, TLoad
     }
 
     switch (field) {
+    case INDEX_NAME:
+      return isSetIndex_name();
     case TABLE_NAME:
       return isSetTable_name();
-    case SOURCE_PATH:
-      return isSetSource_path();
-    case OVERWRITE:
-      return isSetOverwrite();
     case PARTITION_SPEC:
       return isSetPartition_spec();
     }
@@ -374,14 +322,23 @@ public class TLoadDataReq implements org.apache.thrift.TBase<TLoadDataReq, TLoad
   public boolean equals(Object that) {
     if (that == null)
       return false;
-    if (that instanceof TLoadDataReq)
-      return this.equals((TLoadDataReq)that);
+    if (that instanceof TAlterIndexParms)
+      return this.equals((TAlterIndexParms)that);
     return false;
   }
 
-  public boolean equals(TLoadDataReq that) {
+  public boolean equals(TAlterIndexParms that) {
     if (that == null)
       return false;
+
+    boolean this_present_index_name = true && this.isSetIndex_name();
+    boolean that_present_index_name = true && that.isSetIndex_name();
+    if (this_present_index_name || that_present_index_name) {
+      if (!(this_present_index_name && that_present_index_name))
+        return false;
+      if (!this.index_name.equals(that.index_name))
+        return false;
+    }
 
     boolean this_present_table_name = true && this.isSetTable_name();
     boolean that_present_table_name = true && that.isSetTable_name();
@@ -389,24 +346,6 @@ public class TLoadDataReq implements org.apache.thrift.TBase<TLoadDataReq, TLoad
       if (!(this_present_table_name && that_present_table_name))
         return false;
       if (!this.table_name.equals(that.table_name))
-        return false;
-    }
-
-    boolean this_present_source_path = true && this.isSetSource_path();
-    boolean that_present_source_path = true && that.isSetSource_path();
-    if (this_present_source_path || that_present_source_path) {
-      if (!(this_present_source_path && that_present_source_path))
-        return false;
-      if (!this.source_path.equals(that.source_path))
-        return false;
-    }
-
-    boolean this_present_overwrite = true;
-    boolean that_present_overwrite = true;
-    if (this_present_overwrite || that_present_overwrite) {
-      if (!(this_present_overwrite && that_present_overwrite))
-        return false;
-      if (this.overwrite != that.overwrite)
         return false;
     }
 
@@ -426,20 +365,15 @@ public class TLoadDataReq implements org.apache.thrift.TBase<TLoadDataReq, TLoad
   public int hashCode() {
     HashCodeBuilder builder = new HashCodeBuilder();
 
+    boolean present_index_name = true && (isSetIndex_name());
+    builder.append(present_index_name);
+    if (present_index_name)
+      builder.append(index_name);
+
     boolean present_table_name = true && (isSetTable_name());
     builder.append(present_table_name);
     if (present_table_name)
       builder.append(table_name);
-
-    boolean present_source_path = true && (isSetSource_path());
-    builder.append(present_source_path);
-    if (present_source_path)
-      builder.append(source_path);
-
-    boolean present_overwrite = true;
-    builder.append(present_overwrite);
-    if (present_overwrite)
-      builder.append(overwrite);
 
     boolean present_partition_spec = true && (isSetPartition_spec());
     builder.append(present_partition_spec);
@@ -449,40 +383,30 @@ public class TLoadDataReq implements org.apache.thrift.TBase<TLoadDataReq, TLoad
     return builder.toHashCode();
   }
 
-  public int compareTo(TLoadDataReq other) {
+  public int compareTo(TAlterIndexParms other) {
     if (!getClass().equals(other.getClass())) {
       return getClass().getName().compareTo(other.getClass().getName());
     }
 
     int lastComparison = 0;
-    TLoadDataReq typedOther = (TLoadDataReq)other;
+    TAlterIndexParms typedOther = (TAlterIndexParms)other;
 
+    lastComparison = Boolean.valueOf(isSetIndex_name()).compareTo(typedOther.isSetIndex_name());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetIndex_name()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.index_name, typedOther.index_name);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
     lastComparison = Boolean.valueOf(isSetTable_name()).compareTo(typedOther.isSetTable_name());
     if (lastComparison != 0) {
       return lastComparison;
     }
     if (isSetTable_name()) {
       lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.table_name, typedOther.table_name);
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-    }
-    lastComparison = Boolean.valueOf(isSetSource_path()).compareTo(typedOther.isSetSource_path());
-    if (lastComparison != 0) {
-      return lastComparison;
-    }
-    if (isSetSource_path()) {
-      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.source_path, typedOther.source_path);
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-    }
-    lastComparison = Boolean.valueOf(isSetOverwrite()).compareTo(typedOther.isSetOverwrite());
-    if (lastComparison != 0) {
-      return lastComparison;
-    }
-    if (isSetOverwrite()) {
-      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.overwrite, typedOther.overwrite);
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -514,27 +438,23 @@ public class TLoadDataReq implements org.apache.thrift.TBase<TLoadDataReq, TLoad
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder("TLoadDataReq(");
+    StringBuilder sb = new StringBuilder("TAlterIndexParms(");
     boolean first = true;
 
+    sb.append("index_name:");
+    if (this.index_name == null) {
+      sb.append("null");
+    } else {
+      sb.append(this.index_name);
+    }
+    first = false;
+    if (!first) sb.append(", ");
     sb.append("table_name:");
     if (this.table_name == null) {
       sb.append("null");
     } else {
       sb.append(this.table_name);
     }
-    first = false;
-    if (!first) sb.append(", ");
-    sb.append("source_path:");
-    if (this.source_path == null) {
-      sb.append("null");
-    } else {
-      sb.append(this.source_path);
-    }
-    first = false;
-    if (!first) sb.append(", ");
-    sb.append("overwrite:");
-    sb.append(this.overwrite);
     first = false;
     if (isSetPartition_spec()) {
       if (!first) sb.append(", ");
@@ -552,13 +472,12 @@ public class TLoadDataReq implements org.apache.thrift.TBase<TLoadDataReq, TLoad
 
   public void validate() throws org.apache.thrift.TException {
     // check for required fields
+    if (index_name == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'index_name' was not present! Struct: " + toString());
+    }
     if (table_name == null) {
       throw new org.apache.thrift.protocol.TProtocolException("Required field 'table_name' was not present! Struct: " + toString());
     }
-    if (source_path == null) {
-      throw new org.apache.thrift.protocol.TProtocolException("Required field 'source_path' was not present! Struct: " + toString());
-    }
-    // alas, we cannot check 'overwrite' because it's a primitive and you chose the non-beans generator.
     // check for sub-struct validity
     if (table_name != null) {
       table_name.validate();
@@ -575,23 +494,21 @@ public class TLoadDataReq implements org.apache.thrift.TBase<TLoadDataReq, TLoad
 
   private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
     try {
-      // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
-      __isset_bitfield = 0;
       read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
     } catch (org.apache.thrift.TException te) {
       throw new java.io.IOException(te);
     }
   }
 
-  private static class TLoadDataReqStandardSchemeFactory implements SchemeFactory {
-    public TLoadDataReqStandardScheme getScheme() {
-      return new TLoadDataReqStandardScheme();
+  private static class TAlterIndexParmsStandardSchemeFactory implements SchemeFactory {
+    public TAlterIndexParmsStandardScheme getScheme() {
+      return new TAlterIndexParmsStandardScheme();
     }
   }
 
-  private static class TLoadDataReqStandardScheme extends StandardScheme<TLoadDataReq> {
+  private static class TAlterIndexParmsStandardScheme extends StandardScheme<TAlterIndexParms> {
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot, TLoadDataReq struct) throws org.apache.thrift.TException {
+    public void read(org.apache.thrift.protocol.TProtocol iprot, TAlterIndexParms struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TField schemeField;
       iprot.readStructBegin();
       while (true)
@@ -601,7 +518,15 @@ public class TLoadDataReq implements org.apache.thrift.TBase<TLoadDataReq, TLoad
           break;
         }
         switch (schemeField.id) {
-          case 1: // TABLE_NAME
+          case 1: // INDEX_NAME
+            if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+              struct.index_name = iprot.readString();
+              struct.setIndex_nameIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
+          case 2: // TABLE_NAME
             if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
               struct.table_name = new com.cloudera.impala.thrift.TTableName();
               struct.table_name.read(iprot);
@@ -610,33 +535,17 @@ public class TLoadDataReq implements org.apache.thrift.TBase<TLoadDataReq, TLoad
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 2: // SOURCE_PATH
-            if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-              struct.source_path = iprot.readString();
-              struct.setSource_pathIsSet(true);
-            } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-            }
-            break;
-          case 3: // OVERWRITE
-            if (schemeField.type == org.apache.thrift.protocol.TType.BOOL) {
-              struct.overwrite = iprot.readBool();
-              struct.setOverwriteIsSet(true);
-            } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-            }
-            break;
-          case 4: // PARTITION_SPEC
+          case 3: // PARTITION_SPEC
             if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
               {
-                org.apache.thrift.protocol.TList _list112 = iprot.readListBegin();
-                struct.partition_spec = new ArrayList<com.cloudera.impala.thrift.TPartitionKeyValue>(_list112.size);
-                for (int _i113 = 0; _i113 < _list112.size; ++_i113)
+                org.apache.thrift.protocol.TList _list202 = iprot.readListBegin();
+                struct.partition_spec = new ArrayList<com.cloudera.impala.thrift.TPartitionKeyValue>(_list202.size);
+                for (int _i203 = 0; _i203 < _list202.size; ++_i203)
                 {
-                  com.cloudera.impala.thrift.TPartitionKeyValue _elem114; // required
-                  _elem114 = new com.cloudera.impala.thrift.TPartitionKeyValue();
-                  _elem114.read(iprot);
-                  struct.partition_spec.add(_elem114);
+                  com.cloudera.impala.thrift.TPartitionKeyValue _elem204; // required
+                  _elem204 = new com.cloudera.impala.thrift.TPartitionKeyValue();
+                  _elem204.read(iprot);
+                  struct.partition_spec.add(_elem204);
                 }
                 iprot.readListEnd();
               }
@@ -653,37 +562,31 @@ public class TLoadDataReq implements org.apache.thrift.TBase<TLoadDataReq, TLoad
       iprot.readStructEnd();
 
       // check for required fields of primitive type, which can't be checked in the validate method
-      if (!struct.isSetOverwrite()) {
-        throw new org.apache.thrift.protocol.TProtocolException("Required field 'overwrite' was not found in serialized data! Struct: " + toString());
-      }
       struct.validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot, TLoadDataReq struct) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift.protocol.TProtocol oprot, TAlterIndexParms struct) throws org.apache.thrift.TException {
       struct.validate();
 
       oprot.writeStructBegin(STRUCT_DESC);
+      if (struct.index_name != null) {
+        oprot.writeFieldBegin(INDEX_NAME_FIELD_DESC);
+        oprot.writeString(struct.index_name);
+        oprot.writeFieldEnd();
+      }
       if (struct.table_name != null) {
         oprot.writeFieldBegin(TABLE_NAME_FIELD_DESC);
         struct.table_name.write(oprot);
         oprot.writeFieldEnd();
       }
-      if (struct.source_path != null) {
-        oprot.writeFieldBegin(SOURCE_PATH_FIELD_DESC);
-        oprot.writeString(struct.source_path);
-        oprot.writeFieldEnd();
-      }
-      oprot.writeFieldBegin(OVERWRITE_FIELD_DESC);
-      oprot.writeBool(struct.overwrite);
-      oprot.writeFieldEnd();
       if (struct.partition_spec != null) {
         if (struct.isSetPartition_spec()) {
           oprot.writeFieldBegin(PARTITION_SPEC_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.partition_spec.size()));
-            for (com.cloudera.impala.thrift.TPartitionKeyValue _iter115 : struct.partition_spec)
+            for (com.cloudera.impala.thrift.TPartitionKeyValue _iter205 : struct.partition_spec)
             {
-              _iter115.write(oprot);
+              _iter205.write(oprot);
             }
             oprot.writeListEnd();
           }
@@ -696,20 +599,19 @@ public class TLoadDataReq implements org.apache.thrift.TBase<TLoadDataReq, TLoad
 
   }
 
-  private static class TLoadDataReqTupleSchemeFactory implements SchemeFactory {
-    public TLoadDataReqTupleScheme getScheme() {
-      return new TLoadDataReqTupleScheme();
+  private static class TAlterIndexParmsTupleSchemeFactory implements SchemeFactory {
+    public TAlterIndexParmsTupleScheme getScheme() {
+      return new TAlterIndexParmsTupleScheme();
     }
   }
 
-  private static class TLoadDataReqTupleScheme extends TupleScheme<TLoadDataReq> {
+  private static class TAlterIndexParmsTupleScheme extends TupleScheme<TAlterIndexParms> {
 
     @Override
-    public void write(org.apache.thrift.protocol.TProtocol prot, TLoadDataReq struct) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift.protocol.TProtocol prot, TAlterIndexParms struct) throws org.apache.thrift.TException {
       TTupleProtocol oprot = (TTupleProtocol) prot;
+      oprot.writeString(struct.index_name);
       struct.table_name.write(oprot);
-      oprot.writeString(struct.source_path);
-      oprot.writeBool(struct.overwrite);
       BitSet optionals = new BitSet();
       if (struct.isSetPartition_spec()) {
         optionals.set(0);
@@ -718,35 +620,33 @@ public class TLoadDataReq implements org.apache.thrift.TBase<TLoadDataReq, TLoad
       if (struct.isSetPartition_spec()) {
         {
           oprot.writeI32(struct.partition_spec.size());
-          for (com.cloudera.impala.thrift.TPartitionKeyValue _iter116 : struct.partition_spec)
+          for (com.cloudera.impala.thrift.TPartitionKeyValue _iter206 : struct.partition_spec)
           {
-            _iter116.write(oprot);
+            _iter206.write(oprot);
           }
         }
       }
     }
 
     @Override
-    public void read(org.apache.thrift.protocol.TProtocol prot, TLoadDataReq struct) throws org.apache.thrift.TException {
+    public void read(org.apache.thrift.protocol.TProtocol prot, TAlterIndexParms struct) throws org.apache.thrift.TException {
       TTupleProtocol iprot = (TTupleProtocol) prot;
+      struct.index_name = iprot.readString();
+      struct.setIndex_nameIsSet(true);
       struct.table_name = new com.cloudera.impala.thrift.TTableName();
       struct.table_name.read(iprot);
       struct.setTable_nameIsSet(true);
-      struct.source_path = iprot.readString();
-      struct.setSource_pathIsSet(true);
-      struct.overwrite = iprot.readBool();
-      struct.setOverwriteIsSet(true);
       BitSet incoming = iprot.readBitSet(1);
       if (incoming.get(0)) {
         {
-          org.apache.thrift.protocol.TList _list117 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-          struct.partition_spec = new ArrayList<com.cloudera.impala.thrift.TPartitionKeyValue>(_list117.size);
-          for (int _i118 = 0; _i118 < _list117.size; ++_i118)
+          org.apache.thrift.protocol.TList _list207 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+          struct.partition_spec = new ArrayList<com.cloudera.impala.thrift.TPartitionKeyValue>(_list207.size);
+          for (int _i208 = 0; _i208 < _list207.size; ++_i208)
           {
-            com.cloudera.impala.thrift.TPartitionKeyValue _elem119; // required
-            _elem119 = new com.cloudera.impala.thrift.TPartitionKeyValue();
-            _elem119.read(iprot);
-            struct.partition_spec.add(_elem119);
+            com.cloudera.impala.thrift.TPartitionKeyValue _elem209; // required
+            _elem209 = new com.cloudera.impala.thrift.TPartitionKeyValue();
+            _elem209.read(iprot);
+            struct.partition_spec.add(_elem209);
           }
         }
         struct.setPartition_specIsSet(true);

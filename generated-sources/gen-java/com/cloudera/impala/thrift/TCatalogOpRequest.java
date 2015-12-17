@@ -47,6 +47,8 @@ public class TCatalogOpRequest implements org.apache.thrift.TBase<TCatalogOpRequ
   private static final org.apache.thrift.protocol.TField RESET_METADATA_PARAMS_FIELD_DESC = new org.apache.thrift.protocol.TField("reset_metadata_params", org.apache.thrift.protocol.TType.STRUCT, (short)8);
   private static final org.apache.thrift.protocol.TField SHOW_STATS_PARAMS_FIELD_DESC = new org.apache.thrift.protocol.TField("show_stats_params", org.apache.thrift.protocol.TType.STRUCT, (short)9);
   private static final org.apache.thrift.protocol.TField SHOW_CREATE_TABLE_PARAMS_FIELD_DESC = new org.apache.thrift.protocol.TField("show_create_table_params", org.apache.thrift.protocol.TType.STRUCT, (short)10);
+  private static final org.apache.thrift.protocol.TField SHOW_INDICES_PARAMS_FIELD_DESC = new org.apache.thrift.protocol.TField("show_indices_params", org.apache.thrift.protocol.TType.STRUCT, (short)14);
+  private static final org.apache.thrift.protocol.TField DESCRIBE_INDEX_PARAMS_FIELD_DESC = new org.apache.thrift.protocol.TField("describe_index_params", org.apache.thrift.protocol.TType.STRUCT, (short)15);
 
   private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
   static {
@@ -71,6 +73,8 @@ public class TCatalogOpRequest implements org.apache.thrift.TBase<TCatalogOpRequ
   public com.cloudera.impala.thrift.TResetMetadataRequest reset_metadata_params; // optional
   public TShowStatsParams show_stats_params; // optional
   public com.cloudera.impala.thrift.TTableName show_create_table_params; // optional
+  public TShowIndicesParams show_indices_params; // optional
+  public TDescribeIndexParams describe_index_params; // optional
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -90,7 +94,9 @@ public class TCatalogOpRequest implements org.apache.thrift.TBase<TCatalogOpRequ
     DDL_PARAMS((short)7, "ddl_params"),
     RESET_METADATA_PARAMS((short)8, "reset_metadata_params"),
     SHOW_STATS_PARAMS((short)9, "show_stats_params"),
-    SHOW_CREATE_TABLE_PARAMS((short)10, "show_create_table_params");
+    SHOW_CREATE_TABLE_PARAMS((short)10, "show_create_table_params"),
+    SHOW_INDICES_PARAMS((short)14, "show_indices_params"),
+    DESCRIBE_INDEX_PARAMS((short)15, "describe_index_params");
 
     private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
 
@@ -131,6 +137,10 @@ public class TCatalogOpRequest implements org.apache.thrift.TBase<TCatalogOpRequ
           return SHOW_STATS_PARAMS;
         case 10: // SHOW_CREATE_TABLE_PARAMS
           return SHOW_CREATE_TABLE_PARAMS;
+        case 14: // SHOW_INDICES_PARAMS
+          return SHOW_INDICES_PARAMS;
+        case 15: // DESCRIBE_INDEX_PARAMS
+          return DESCRIBE_INDEX_PARAMS;
         default:
           return null;
       }
@@ -171,7 +181,7 @@ public class TCatalogOpRequest implements org.apache.thrift.TBase<TCatalogOpRequ
   }
 
   // isset id assignments
-  private _Fields optionals[] = {_Fields.USE_DB_PARAMS,_Fields.DESCRIBE_TABLE_PARAMS,_Fields.SHOW_DBS_PARAMS,_Fields.SHOW_TABLES_PARAMS,_Fields.SHOW_FNS_PARAMS,_Fields.SHOW_DATA_SRCS_PARAMS,_Fields.SHOW_ROLES_PARAMS,_Fields.SHOW_GRANT_ROLE_PARAMS,_Fields.DDL_PARAMS,_Fields.RESET_METADATA_PARAMS,_Fields.SHOW_STATS_PARAMS,_Fields.SHOW_CREATE_TABLE_PARAMS};
+  private _Fields optionals[] = {_Fields.USE_DB_PARAMS,_Fields.DESCRIBE_TABLE_PARAMS,_Fields.SHOW_DBS_PARAMS,_Fields.SHOW_TABLES_PARAMS,_Fields.SHOW_FNS_PARAMS,_Fields.SHOW_DATA_SRCS_PARAMS,_Fields.SHOW_ROLES_PARAMS,_Fields.SHOW_GRANT_ROLE_PARAMS,_Fields.DDL_PARAMS,_Fields.RESET_METADATA_PARAMS,_Fields.SHOW_STATS_PARAMS,_Fields.SHOW_CREATE_TABLE_PARAMS,_Fields.SHOW_INDICES_PARAMS,_Fields.DESCRIBE_INDEX_PARAMS};
   public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
@@ -201,6 +211,10 @@ public class TCatalogOpRequest implements org.apache.thrift.TBase<TCatalogOpRequ
         new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, TShowStatsParams.class)));
     tmpMap.put(_Fields.SHOW_CREATE_TABLE_PARAMS, new org.apache.thrift.meta_data.FieldMetaData("show_create_table_params", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
         new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.cloudera.impala.thrift.TTableName.class)));
+    tmpMap.put(_Fields.SHOW_INDICES_PARAMS, new org.apache.thrift.meta_data.FieldMetaData("show_indices_params", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
+        new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, TShowIndicesParams.class)));
+    tmpMap.put(_Fields.DESCRIBE_INDEX_PARAMS, new org.apache.thrift.meta_data.FieldMetaData("describe_index_params", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
+        new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, TDescribeIndexParams.class)));
     metaDataMap = Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(TCatalogOpRequest.class, metaDataMap);
   }
@@ -258,6 +272,12 @@ public class TCatalogOpRequest implements org.apache.thrift.TBase<TCatalogOpRequ
     if (other.isSetShow_create_table_params()) {
       this.show_create_table_params = new com.cloudera.impala.thrift.TTableName(other.show_create_table_params);
     }
+    if (other.isSetShow_indices_params()) {
+      this.show_indices_params = new TShowIndicesParams(other.show_indices_params);
+    }
+    if (other.isSetDescribe_index_params()) {
+      this.describe_index_params = new TDescribeIndexParams(other.describe_index_params);
+    }
   }
 
   public TCatalogOpRequest deepCopy() {
@@ -279,6 +299,8 @@ public class TCatalogOpRequest implements org.apache.thrift.TBase<TCatalogOpRequ
     this.reset_metadata_params = null;
     this.show_stats_params = null;
     this.show_create_table_params = null;
+    this.show_indices_params = null;
+    this.describe_index_params = null;
   }
 
   /**
@@ -601,6 +623,54 @@ public class TCatalogOpRequest implements org.apache.thrift.TBase<TCatalogOpRequ
     }
   }
 
+  public TShowIndicesParams getShow_indices_params() {
+    return this.show_indices_params;
+  }
+
+  public TCatalogOpRequest setShow_indices_params(TShowIndicesParams show_indices_params) {
+    this.show_indices_params = show_indices_params;
+    return this;
+  }
+
+  public void unsetShow_indices_params() {
+    this.show_indices_params = null;
+  }
+
+  /** Returns true if field show_indices_params is set (has been assigned a value) and false otherwise */
+  public boolean isSetShow_indices_params() {
+    return this.show_indices_params != null;
+  }
+
+  public void setShow_indices_paramsIsSet(boolean value) {
+    if (!value) {
+      this.show_indices_params = null;
+    }
+  }
+
+  public TDescribeIndexParams getDescribe_index_params() {
+    return this.describe_index_params;
+  }
+
+  public TCatalogOpRequest setDescribe_index_params(TDescribeIndexParams describe_index_params) {
+    this.describe_index_params = describe_index_params;
+    return this;
+  }
+
+  public void unsetDescribe_index_params() {
+    this.describe_index_params = null;
+  }
+
+  /** Returns true if field describe_index_params is set (has been assigned a value) and false otherwise */
+  public boolean isSetDescribe_index_params() {
+    return this.describe_index_params != null;
+  }
+
+  public void setDescribe_index_paramsIsSet(boolean value) {
+    if (!value) {
+      this.describe_index_params = null;
+    }
+  }
+
   public void setFieldValue(_Fields field, Object value) {
     switch (field) {
     case OP_TYPE:
@@ -707,6 +777,22 @@ public class TCatalogOpRequest implements org.apache.thrift.TBase<TCatalogOpRequ
       }
       break;
 
+    case SHOW_INDICES_PARAMS:
+      if (value == null) {
+        unsetShow_indices_params();
+      } else {
+        setShow_indices_params((TShowIndicesParams)value);
+      }
+      break;
+
+    case DESCRIBE_INDEX_PARAMS:
+      if (value == null) {
+        unsetDescribe_index_params();
+      } else {
+        setDescribe_index_params((TDescribeIndexParams)value);
+      }
+      break;
+
     }
   }
 
@@ -751,6 +837,12 @@ public class TCatalogOpRequest implements org.apache.thrift.TBase<TCatalogOpRequ
     case SHOW_CREATE_TABLE_PARAMS:
       return getShow_create_table_params();
 
+    case SHOW_INDICES_PARAMS:
+      return getShow_indices_params();
+
+    case DESCRIBE_INDEX_PARAMS:
+      return getDescribe_index_params();
+
     }
     throw new IllegalStateException();
   }
@@ -788,6 +880,10 @@ public class TCatalogOpRequest implements org.apache.thrift.TBase<TCatalogOpRequ
       return isSetShow_stats_params();
     case SHOW_CREATE_TABLE_PARAMS:
       return isSetShow_create_table_params();
+    case SHOW_INDICES_PARAMS:
+      return isSetShow_indices_params();
+    case DESCRIBE_INDEX_PARAMS:
+      return isSetDescribe_index_params();
     }
     throw new IllegalStateException();
   }
@@ -922,6 +1018,24 @@ public class TCatalogOpRequest implements org.apache.thrift.TBase<TCatalogOpRequ
         return false;
     }
 
+    boolean this_present_show_indices_params = true && this.isSetShow_indices_params();
+    boolean that_present_show_indices_params = true && that.isSetShow_indices_params();
+    if (this_present_show_indices_params || that_present_show_indices_params) {
+      if (!(this_present_show_indices_params && that_present_show_indices_params))
+        return false;
+      if (!this.show_indices_params.equals(that.show_indices_params))
+        return false;
+    }
+
+    boolean this_present_describe_index_params = true && this.isSetDescribe_index_params();
+    boolean that_present_describe_index_params = true && that.isSetDescribe_index_params();
+    if (this_present_describe_index_params || that_present_describe_index_params) {
+      if (!(this_present_describe_index_params && that_present_describe_index_params))
+        return false;
+      if (!this.describe_index_params.equals(that.describe_index_params))
+        return false;
+    }
+
     return true;
   }
 
@@ -993,6 +1107,16 @@ public class TCatalogOpRequest implements org.apache.thrift.TBase<TCatalogOpRequ
     builder.append(present_show_create_table_params);
     if (present_show_create_table_params)
       builder.append(show_create_table_params);
+
+    boolean present_show_indices_params = true && (isSetShow_indices_params());
+    builder.append(present_show_indices_params);
+    if (present_show_indices_params)
+      builder.append(show_indices_params);
+
+    boolean present_describe_index_params = true && (isSetDescribe_index_params());
+    builder.append(present_describe_index_params);
+    if (present_describe_index_params)
+      builder.append(describe_index_params);
 
     return builder.toHashCode();
   }
@@ -1131,6 +1255,26 @@ public class TCatalogOpRequest implements org.apache.thrift.TBase<TCatalogOpRequ
     }
     if (isSetShow_create_table_params()) {
       lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.show_create_table_params, typedOther.show_create_table_params);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
+    lastComparison = Boolean.valueOf(isSetShow_indices_params()).compareTo(typedOther.isSetShow_indices_params());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetShow_indices_params()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.show_indices_params, typedOther.show_indices_params);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
+    lastComparison = Boolean.valueOf(isSetDescribe_index_params()).compareTo(typedOther.isSetDescribe_index_params());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetDescribe_index_params()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.describe_index_params, typedOther.describe_index_params);
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -1282,6 +1426,26 @@ public class TCatalogOpRequest implements org.apache.thrift.TBase<TCatalogOpRequ
       }
       first = false;
     }
+    if (isSetShow_indices_params()) {
+      if (!first) sb.append(", ");
+      sb.append("show_indices_params:");
+      if (this.show_indices_params == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.show_indices_params);
+      }
+      first = false;
+    }
+    if (isSetDescribe_index_params()) {
+      if (!first) sb.append(", ");
+      sb.append("describe_index_params:");
+      if (this.describe_index_params == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.describe_index_params);
+      }
+      first = false;
+    }
     sb.append(")");
     return sb.toString();
   }
@@ -1327,6 +1491,12 @@ public class TCatalogOpRequest implements org.apache.thrift.TBase<TCatalogOpRequ
     }
     if (show_create_table_params != null) {
       show_create_table_params.validate();
+    }
+    if (show_indices_params != null) {
+      show_indices_params.validate();
+    }
+    if (describe_index_params != null) {
+      describe_index_params.validate();
     }
   }
 
@@ -1480,6 +1650,24 @@ public class TCatalogOpRequest implements org.apache.thrift.TBase<TCatalogOpRequ
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
+          case 14: // SHOW_INDICES_PARAMS
+            if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+              struct.show_indices_params = new TShowIndicesParams();
+              struct.show_indices_params.read(iprot);
+              struct.setShow_indices_paramsIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
+          case 15: // DESCRIBE_INDEX_PARAMS
+            if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+              struct.describe_index_params = new TDescribeIndexParams();
+              struct.describe_index_params.read(iprot);
+              struct.setDescribe_index_paramsIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
           default:
             org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
         }
@@ -1584,6 +1772,20 @@ public class TCatalogOpRequest implements org.apache.thrift.TBase<TCatalogOpRequ
           oprot.writeFieldEnd();
         }
       }
+      if (struct.show_indices_params != null) {
+        if (struct.isSetShow_indices_params()) {
+          oprot.writeFieldBegin(SHOW_INDICES_PARAMS_FIELD_DESC);
+          struct.show_indices_params.write(oprot);
+          oprot.writeFieldEnd();
+        }
+      }
+      if (struct.describe_index_params != null) {
+        if (struct.isSetDescribe_index_params()) {
+          oprot.writeFieldBegin(DESCRIBE_INDEX_PARAMS_FIELD_DESC);
+          struct.describe_index_params.write(oprot);
+          oprot.writeFieldEnd();
+        }
+      }
       oprot.writeFieldStop();
       oprot.writeStructEnd();
     }
@@ -1639,7 +1841,13 @@ public class TCatalogOpRequest implements org.apache.thrift.TBase<TCatalogOpRequ
       if (struct.isSetShow_create_table_params()) {
         optionals.set(11);
       }
-      oprot.writeBitSet(optionals, 12);
+      if (struct.isSetShow_indices_params()) {
+        optionals.set(12);
+      }
+      if (struct.isSetDescribe_index_params()) {
+        optionals.set(13);
+      }
+      oprot.writeBitSet(optionals, 14);
       if (struct.isSetUse_db_params()) {
         struct.use_db_params.write(oprot);
       }
@@ -1676,6 +1884,12 @@ public class TCatalogOpRequest implements org.apache.thrift.TBase<TCatalogOpRequ
       if (struct.isSetShow_create_table_params()) {
         struct.show_create_table_params.write(oprot);
       }
+      if (struct.isSetShow_indices_params()) {
+        struct.show_indices_params.write(oprot);
+      }
+      if (struct.isSetDescribe_index_params()) {
+        struct.describe_index_params.write(oprot);
+      }
     }
 
     @Override
@@ -1683,7 +1897,7 @@ public class TCatalogOpRequest implements org.apache.thrift.TBase<TCatalogOpRequ
       TTupleProtocol iprot = (TTupleProtocol) prot;
       struct.op_type = TCatalogOpType.findByValue(iprot.readI32());
       struct.setOp_typeIsSet(true);
-      BitSet incoming = iprot.readBitSet(12);
+      BitSet incoming = iprot.readBitSet(14);
       if (incoming.get(0)) {
         struct.use_db_params = new TUseDbParams();
         struct.use_db_params.read(iprot);
@@ -1743,6 +1957,16 @@ public class TCatalogOpRequest implements org.apache.thrift.TBase<TCatalogOpRequ
         struct.show_create_table_params = new com.cloudera.impala.thrift.TTableName();
         struct.show_create_table_params.read(iprot);
         struct.setShow_create_table_paramsIsSet(true);
+      }
+      if (incoming.get(12)) {
+        struct.show_indices_params = new TShowIndicesParams();
+        struct.show_indices_params.read(iprot);
+        struct.setShow_indices_paramsIsSet(true);
+      }
+      if (incoming.get(13)) {
+        struct.describe_index_params = new TDescribeIndexParams();
+        struct.describe_index_params.read(iprot);
+        struct.setDescribe_index_paramsIsSet(true);
       }
     }
   }

@@ -120,6 +120,12 @@ import com.cloudera.impala.analysis.SqlParserSymbols;
     keywordMap.put("if", new Integer(SqlParserSymbols.KW_IF));
     keywordMap.put("in", new Integer(SqlParserSymbols.KW_IN));
     keywordMap.put("incremental", new Integer(SqlParserSymbols.KW_INCREMENTAL));
+    //add by liubb
+    keywordMap.put("index", new Integer(SqlParserSymbols.KW_INDEX));
+    keywordMap.put("indices", new Integer(SqlParserSymbols.KW_INDICES));
+    keywordMap.put("deferred", new Integer(SqlParserSymbols.KW_DEFERRED));
+    keywordMap.put("rebuild", new Integer(SqlParserSymbols.KW_REBUILD));
+    keywordMap.put("idxproperties", new Integer(SqlParserSymbols.KW_IDXPROPERTIES));   
     keywordMap.put("init_fn", new Integer(SqlParserSymbols.KW_INIT_FN));
     keywordMap.put("inner", new Integer(SqlParserSymbols.KW_INNER));
     keywordMap.put("inpath", new Integer(SqlParserSymbols.KW_INPATH));

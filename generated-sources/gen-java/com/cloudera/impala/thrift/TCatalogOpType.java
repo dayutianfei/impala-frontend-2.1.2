@@ -23,7 +23,9 @@ public enum TCatalogOpType implements org.apache.thrift.TEnum {
   SHOW_CREATE_TABLE(8),
   SHOW_DATA_SRCS(9),
   SHOW_ROLES(10),
-  SHOW_GRANT_ROLE(11);
+  SHOW_GRANT_ROLE(11),
+  DESCRIBE_INDEX(12),
+  SHOW_INDICES(13);
 
   private final int value;
 
@@ -68,6 +70,10 @@ public enum TCatalogOpType implements org.apache.thrift.TEnum {
         return SHOW_ROLES;
       case 11:
         return SHOW_GRANT_ROLE;
+      case 12:
+        return DESCRIBE_INDEX;
+      case 13:
+        return SHOW_INDICES;
       default:
         return null;
     }

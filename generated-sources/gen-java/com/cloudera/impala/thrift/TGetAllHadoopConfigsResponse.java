@@ -348,15 +348,15 @@ public class TGetAllHadoopConfigsResponse implements org.apache.thrift.TBase<TGe
           case 1: // CONFIGS
             if (schemeField.type == org.apache.thrift.protocol.TType.MAP) {
               {
-                org.apache.thrift.protocol.TMap _map194 = iprot.readMapBegin();
-                struct.configs = new HashMap<String,String>(2*_map194.size);
-                for (int _i195 = 0; _i195 < _map194.size; ++_i195)
+                org.apache.thrift.protocol.TMap _map210 = iprot.readMapBegin();
+                struct.configs = new HashMap<String,String>(2*_map210.size);
+                for (int _i211 = 0; _i211 < _map210.size; ++_i211)
                 {
-                  String _key196; // required
-                  String _val197; // required
-                  _key196 = iprot.readString();
-                  _val197 = iprot.readString();
-                  struct.configs.put(_key196, _val197);
+                  String _key212; // required
+                  String _val213; // required
+                  _key212 = iprot.readString();
+                  _val213 = iprot.readString();
+                  struct.configs.put(_key212, _val213);
                 }
                 iprot.readMapEnd();
               }
@@ -385,10 +385,10 @@ public class TGetAllHadoopConfigsResponse implements org.apache.thrift.TBase<TGe
           oprot.writeFieldBegin(CONFIGS_FIELD_DESC);
           {
             oprot.writeMapBegin(new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.STRING, struct.configs.size()));
-            for (Map.Entry<String, String> _iter198 : struct.configs.entrySet())
+            for (Map.Entry<String, String> _iter214 : struct.configs.entrySet())
             {
-              oprot.writeString(_iter198.getKey());
-              oprot.writeString(_iter198.getValue());
+              oprot.writeString(_iter214.getKey());
+              oprot.writeString(_iter214.getValue());
             }
             oprot.writeMapEnd();
           }
@@ -420,10 +420,10 @@ public class TGetAllHadoopConfigsResponse implements org.apache.thrift.TBase<TGe
       if (struct.isSetConfigs()) {
         {
           oprot.writeI32(struct.configs.size());
-          for (Map.Entry<String, String> _iter199 : struct.configs.entrySet())
+          for (Map.Entry<String, String> _iter215 : struct.configs.entrySet())
           {
-            oprot.writeString(_iter199.getKey());
-            oprot.writeString(_iter199.getValue());
+            oprot.writeString(_iter215.getKey());
+            oprot.writeString(_iter215.getValue());
           }
         }
       }
@@ -435,15 +435,15 @@ public class TGetAllHadoopConfigsResponse implements org.apache.thrift.TBase<TGe
       BitSet incoming = iprot.readBitSet(1);
       if (incoming.get(0)) {
         {
-          org.apache.thrift.protocol.TMap _map200 = new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.STRING, iprot.readI32());
-          struct.configs = new HashMap<String,String>(2*_map200.size);
-          for (int _i201 = 0; _i201 < _map200.size; ++_i201)
+          org.apache.thrift.protocol.TMap _map216 = new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.STRING, iprot.readI32());
+          struct.configs = new HashMap<String,String>(2*_map216.size);
+          for (int _i217 = 0; _i217 < _map216.size; ++_i217)
           {
-            String _key202; // required
-            String _val203; // required
-            _key202 = iprot.readString();
-            _val203 = iprot.readString();
-            struct.configs.put(_key202, _val203);
+            String _key218; // required
+            String _val219; // required
+            _key218 = iprot.readString();
+            _val219 = iprot.readString();
+            struct.configs.put(_key218, _val219);
           }
         }
         struct.setConfigsIsSet(true);

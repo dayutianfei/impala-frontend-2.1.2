@@ -6,6 +6,7 @@
  */
 package com.cloudera.impala.thrift.idriller;
 
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.thrift.scheme.IScheme;
 import org.apache.thrift.scheme.SchemeFactory;
 import org.apache.thrift.scheme.StandardScheme;
@@ -774,7 +775,59 @@ public class TIndex implements org.apache.thrift.TBase<TIndex, TIndex._Fields>, 
 
   @Override
   public int hashCode() {
-    return 0;
+    HashCodeBuilder builder = new HashCodeBuilder();
+
+    boolean present_indexName = true && (isSetIndexName());
+    builder.append(present_indexName);
+    if (present_indexName)
+      builder.append(indexName);
+
+    boolean present_indexType = true && (isSetIndexType());
+    builder.append(present_indexType);
+    if (present_indexType)
+      builder.append(indexType);
+
+    boolean present_dbName = true && (isSetDbName());
+    builder.append(present_dbName);
+    if (present_dbName)
+      builder.append(dbName);
+
+    boolean present_origTableName = true && (isSetOrigTableName());
+    builder.append(present_origTableName);
+    if (present_origTableName)
+      builder.append(origTableName);
+
+    boolean present_createTime = true;
+    builder.append(present_createTime);
+    if (present_createTime)
+      builder.append(createTime);
+
+    boolean present_lastAccessTime = true && (isSetLastAccessTime());
+    builder.append(present_lastAccessTime);
+    if (present_lastAccessTime)
+      builder.append(lastAccessTime);
+
+    boolean present_location = true && (isSetLocation());
+    builder.append(present_location);
+    if (present_location)
+      builder.append(location);
+
+    boolean present_parameters = true && (isSetParameters());
+    builder.append(present_parameters);
+    if (present_parameters)
+      builder.append(parameters);
+
+    boolean present_deferredRebuild = true;
+    builder.append(present_deferredRebuild);
+    if (present_deferredRebuild)
+      builder.append(deferredRebuild);
+
+    boolean present_enabled = true && (isSetEnabled());
+    builder.append(present_enabled);
+    if (present_enabled)
+      builder.append(enabled);
+
+    return builder.toHashCode();
   }
 
   public int compareTo(TIndex other) {

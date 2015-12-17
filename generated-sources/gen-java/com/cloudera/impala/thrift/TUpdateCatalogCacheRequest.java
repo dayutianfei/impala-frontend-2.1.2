@@ -643,14 +643,14 @@ public class TUpdateCatalogCacheRequest implements org.apache.thrift.TBase<TUpda
           case 3: // UPDATED_OBJECTS
             if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
               {
-                org.apache.thrift.protocol.TList _list170 = iprot.readListBegin();
-                struct.updated_objects = new ArrayList<com.cloudera.impala.thrift.TCatalogObject>(_list170.size);
-                for (int _i171 = 0; _i171 < _list170.size; ++_i171)
+                org.apache.thrift.protocol.TList _list186 = iprot.readListBegin();
+                struct.updated_objects = new ArrayList<com.cloudera.impala.thrift.TCatalogObject>(_list186.size);
+                for (int _i187 = 0; _i187 < _list186.size; ++_i187)
                 {
-                  com.cloudera.impala.thrift.TCatalogObject _elem172; // required
-                  _elem172 = new com.cloudera.impala.thrift.TCatalogObject();
-                  _elem172.read(iprot);
-                  struct.updated_objects.add(_elem172);
+                  com.cloudera.impala.thrift.TCatalogObject _elem188; // required
+                  _elem188 = new com.cloudera.impala.thrift.TCatalogObject();
+                  _elem188.read(iprot);
+                  struct.updated_objects.add(_elem188);
                 }
                 iprot.readListEnd();
               }
@@ -662,14 +662,14 @@ public class TUpdateCatalogCacheRequest implements org.apache.thrift.TBase<TUpda
           case 4: // REMOVED_OBJECTS
             if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
               {
-                org.apache.thrift.protocol.TList _list173 = iprot.readListBegin();
-                struct.removed_objects = new ArrayList<com.cloudera.impala.thrift.TCatalogObject>(_list173.size);
-                for (int _i174 = 0; _i174 < _list173.size; ++_i174)
+                org.apache.thrift.protocol.TList _list189 = iprot.readListBegin();
+                struct.removed_objects = new ArrayList<com.cloudera.impala.thrift.TCatalogObject>(_list189.size);
+                for (int _i190 = 0; _i190 < _list189.size; ++_i190)
                 {
-                  com.cloudera.impala.thrift.TCatalogObject _elem175; // required
-                  _elem175 = new com.cloudera.impala.thrift.TCatalogObject();
-                  _elem175.read(iprot);
-                  struct.removed_objects.add(_elem175);
+                  com.cloudera.impala.thrift.TCatalogObject _elem191; // required
+                  _elem191 = new com.cloudera.impala.thrift.TCatalogObject();
+                  _elem191.read(iprot);
+                  struct.removed_objects.add(_elem191);
                 }
                 iprot.readListEnd();
               }
@@ -708,9 +708,9 @@ public class TUpdateCatalogCacheRequest implements org.apache.thrift.TBase<TUpda
         oprot.writeFieldBegin(UPDATED_OBJECTS_FIELD_DESC);
         {
           oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.updated_objects.size()));
-          for (com.cloudera.impala.thrift.TCatalogObject _iter176 : struct.updated_objects)
+          for (com.cloudera.impala.thrift.TCatalogObject _iter192 : struct.updated_objects)
           {
-            _iter176.write(oprot);
+            _iter192.write(oprot);
           }
           oprot.writeListEnd();
         }
@@ -720,9 +720,9 @@ public class TUpdateCatalogCacheRequest implements org.apache.thrift.TBase<TUpda
         oprot.writeFieldBegin(REMOVED_OBJECTS_FIELD_DESC);
         {
           oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.removed_objects.size()));
-          for (com.cloudera.impala.thrift.TCatalogObject _iter177 : struct.removed_objects)
+          for (com.cloudera.impala.thrift.TCatalogObject _iter193 : struct.removed_objects)
           {
-            _iter177.write(oprot);
+            _iter193.write(oprot);
           }
           oprot.writeListEnd();
         }
@@ -749,16 +749,16 @@ public class TUpdateCatalogCacheRequest implements org.apache.thrift.TBase<TUpda
       struct.catalog_service_id.write(oprot);
       {
         oprot.writeI32(struct.updated_objects.size());
-        for (com.cloudera.impala.thrift.TCatalogObject _iter178 : struct.updated_objects)
+        for (com.cloudera.impala.thrift.TCatalogObject _iter194 : struct.updated_objects)
         {
-          _iter178.write(oprot);
+          _iter194.write(oprot);
         }
       }
       {
         oprot.writeI32(struct.removed_objects.size());
-        for (com.cloudera.impala.thrift.TCatalogObject _iter179 : struct.removed_objects)
+        for (com.cloudera.impala.thrift.TCatalogObject _iter195 : struct.removed_objects)
         {
-          _iter179.write(oprot);
+          _iter195.write(oprot);
         }
       }
     }
@@ -772,26 +772,26 @@ public class TUpdateCatalogCacheRequest implements org.apache.thrift.TBase<TUpda
       struct.catalog_service_id.read(iprot);
       struct.setCatalog_service_idIsSet(true);
       {
-        org.apache.thrift.protocol.TList _list180 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-        struct.updated_objects = new ArrayList<com.cloudera.impala.thrift.TCatalogObject>(_list180.size);
-        for (int _i181 = 0; _i181 < _list180.size; ++_i181)
+        org.apache.thrift.protocol.TList _list196 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+        struct.updated_objects = new ArrayList<com.cloudera.impala.thrift.TCatalogObject>(_list196.size);
+        for (int _i197 = 0; _i197 < _list196.size; ++_i197)
         {
-          com.cloudera.impala.thrift.TCatalogObject _elem182; // required
-          _elem182 = new com.cloudera.impala.thrift.TCatalogObject();
-          _elem182.read(iprot);
-          struct.updated_objects.add(_elem182);
+          com.cloudera.impala.thrift.TCatalogObject _elem198; // required
+          _elem198 = new com.cloudera.impala.thrift.TCatalogObject();
+          _elem198.read(iprot);
+          struct.updated_objects.add(_elem198);
         }
       }
       struct.setUpdated_objectsIsSet(true);
       {
-        org.apache.thrift.protocol.TList _list183 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-        struct.removed_objects = new ArrayList<com.cloudera.impala.thrift.TCatalogObject>(_list183.size);
-        for (int _i184 = 0; _i184 < _list183.size; ++_i184)
+        org.apache.thrift.protocol.TList _list199 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+        struct.removed_objects = new ArrayList<com.cloudera.impala.thrift.TCatalogObject>(_list199.size);
+        for (int _i200 = 0; _i200 < _list199.size; ++_i200)
         {
-          com.cloudera.impala.thrift.TCatalogObject _elem185; // required
-          _elem185 = new com.cloudera.impala.thrift.TCatalogObject();
-          _elem185.read(iprot);
-          struct.removed_objects.add(_elem185);
+          com.cloudera.impala.thrift.TCatalogObject _elem201; // required
+          _elem201 = new com.cloudera.impala.thrift.TCatalogObject();
+          _elem201.read(iprot);
+          struct.removed_objects.add(_elem201);
         }
       }
       struct.setRemoved_objectsIsSet(true);

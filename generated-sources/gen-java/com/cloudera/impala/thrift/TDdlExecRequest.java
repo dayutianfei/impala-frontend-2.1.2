@@ -54,6 +54,9 @@ public class TDdlExecRequest implements org.apache.thrift.TBase<TDdlExecRequest,
   private static final org.apache.thrift.protocol.TField CREATE_DROP_ROLE_PARAMS_FIELD_DESC = new org.apache.thrift.protocol.TField("create_drop_role_params", org.apache.thrift.protocol.TType.STRUCT, (short)18);
   private static final org.apache.thrift.protocol.TField GRANT_REVOKE_ROLE_PARAMS_FIELD_DESC = new org.apache.thrift.protocol.TField("grant_revoke_role_params", org.apache.thrift.protocol.TType.STRUCT, (short)19);
   private static final org.apache.thrift.protocol.TField GRANT_REVOKE_PRIV_PARAMS_FIELD_DESC = new org.apache.thrift.protocol.TField("grant_revoke_priv_params", org.apache.thrift.protocol.TType.STRUCT, (short)20);
+  private static final org.apache.thrift.protocol.TField ALTER_INDEX_PARAMS_FIELD_DESC = new org.apache.thrift.protocol.TField("alter_index_params", org.apache.thrift.protocol.TType.STRUCT, (short)21);
+  private static final org.apache.thrift.protocol.TField CREATE_INDEX_PARAMS_FIELD_DESC = new org.apache.thrift.protocol.TField("create_index_params", org.apache.thrift.protocol.TType.STRUCT, (short)22);
+  private static final org.apache.thrift.protocol.TField DROP_INDEX_PARAMS_FIELD_DESC = new org.apache.thrift.protocol.TField("drop_index_params", org.apache.thrift.protocol.TType.STRUCT, (short)23);
 
   private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
   static {
@@ -89,6 +92,9 @@ public class TDdlExecRequest implements org.apache.thrift.TBase<TDdlExecRequest,
   public com.cloudera.impala.thrift.TCreateDropRoleParams create_drop_role_params; // optional
   public com.cloudera.impala.thrift.TGrantRevokeRoleParams grant_revoke_role_params; // optional
   public com.cloudera.impala.thrift.TGrantRevokePrivParams grant_revoke_priv_params; // optional
+  public com.cloudera.impala.thrift.TAlterIndexParms alter_index_params; // optional
+  public com.cloudera.impala.thrift.TCreateIndexParms create_index_params; // optional
+  public com.cloudera.impala.thrift.TDropIndexParms drop_index_params; // optional
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -119,7 +125,10 @@ public class TDdlExecRequest implements org.apache.thrift.TBase<TDdlExecRequest,
     DROP_STATS_PARAMS((short)16, "drop_stats_params"),
     CREATE_DROP_ROLE_PARAMS((short)18, "create_drop_role_params"),
     GRANT_REVOKE_ROLE_PARAMS((short)19, "grant_revoke_role_params"),
-    GRANT_REVOKE_PRIV_PARAMS((short)20, "grant_revoke_priv_params");
+    GRANT_REVOKE_PRIV_PARAMS((short)20, "grant_revoke_priv_params"),
+    ALTER_INDEX_PARAMS((short)21, "alter_index_params"),
+    CREATE_INDEX_PARAMS((short)22, "create_index_params"),
+    DROP_INDEX_PARAMS((short)23, "drop_index_params");
 
     private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
 
@@ -174,6 +183,12 @@ public class TDdlExecRequest implements org.apache.thrift.TBase<TDdlExecRequest,
           return GRANT_REVOKE_ROLE_PARAMS;
         case 20: // GRANT_REVOKE_PRIV_PARAMS
           return GRANT_REVOKE_PRIV_PARAMS;
+        case 21: // ALTER_INDEX_PARAMS
+          return ALTER_INDEX_PARAMS;
+        case 22: // CREATE_INDEX_PARAMS
+          return CREATE_INDEX_PARAMS;
+        case 23: // DROP_INDEX_PARAMS
+          return DROP_INDEX_PARAMS;
         default:
           return null;
       }
@@ -214,7 +229,7 @@ public class TDdlExecRequest implements org.apache.thrift.TBase<TDdlExecRequest,
   }
 
   // isset id assignments
-  private _Fields optionals[] = {_Fields.HEADER,_Fields.ALTER_TABLE_PARAMS,_Fields.ALTER_VIEW_PARAMS,_Fields.CREATE_DB_PARAMS,_Fields.CREATE_TABLE_PARAMS,_Fields.CREATE_TABLE_LIKE_PARAMS,_Fields.CREATE_VIEW_PARAMS,_Fields.CREATE_FN_PARAMS,_Fields.DROP_DB_PARAMS,_Fields.DROP_TABLE_OR_VIEW_PARAMS,_Fields.DROP_FN_PARAMS,_Fields.COMPUTE_STATS_PARAMS,_Fields.CREATE_DATA_SOURCE_PARAMS,_Fields.DROP_DATA_SOURCE_PARAMS,_Fields.DROP_STATS_PARAMS,_Fields.CREATE_DROP_ROLE_PARAMS,_Fields.GRANT_REVOKE_ROLE_PARAMS,_Fields.GRANT_REVOKE_PRIV_PARAMS};
+  private _Fields optionals[] = {_Fields.HEADER,_Fields.ALTER_TABLE_PARAMS,_Fields.ALTER_VIEW_PARAMS,_Fields.CREATE_DB_PARAMS,_Fields.CREATE_TABLE_PARAMS,_Fields.CREATE_TABLE_LIKE_PARAMS,_Fields.CREATE_VIEW_PARAMS,_Fields.CREATE_FN_PARAMS,_Fields.DROP_DB_PARAMS,_Fields.DROP_TABLE_OR_VIEW_PARAMS,_Fields.DROP_FN_PARAMS,_Fields.COMPUTE_STATS_PARAMS,_Fields.CREATE_DATA_SOURCE_PARAMS,_Fields.DROP_DATA_SOURCE_PARAMS,_Fields.DROP_STATS_PARAMS,_Fields.CREATE_DROP_ROLE_PARAMS,_Fields.GRANT_REVOKE_ROLE_PARAMS,_Fields.GRANT_REVOKE_PRIV_PARAMS,_Fields.ALTER_INDEX_PARAMS,_Fields.CREATE_INDEX_PARAMS,_Fields.DROP_INDEX_PARAMS};
   public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
@@ -258,6 +273,12 @@ public class TDdlExecRequest implements org.apache.thrift.TBase<TDdlExecRequest,
         new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.cloudera.impala.thrift.TGrantRevokeRoleParams.class)));
     tmpMap.put(_Fields.GRANT_REVOKE_PRIV_PARAMS, new org.apache.thrift.meta_data.FieldMetaData("grant_revoke_priv_params", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
         new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.cloudera.impala.thrift.TGrantRevokePrivParams.class)));
+    tmpMap.put(_Fields.ALTER_INDEX_PARAMS, new org.apache.thrift.meta_data.FieldMetaData("alter_index_params", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
+        new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.cloudera.impala.thrift.TAlterIndexParms.class)));
+    tmpMap.put(_Fields.CREATE_INDEX_PARAMS, new org.apache.thrift.meta_data.FieldMetaData("create_index_params", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
+        new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.cloudera.impala.thrift.TCreateIndexParms.class)));
+    tmpMap.put(_Fields.DROP_INDEX_PARAMS, new org.apache.thrift.meta_data.FieldMetaData("drop_index_params", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
+        new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.cloudera.impala.thrift.TDropIndexParms.class)));
     metaDataMap = Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(TDdlExecRequest.class, metaDataMap);
   }
@@ -340,6 +361,15 @@ public class TDdlExecRequest implements org.apache.thrift.TBase<TDdlExecRequest,
     if (other.isSetGrant_revoke_priv_params()) {
       this.grant_revoke_priv_params = new com.cloudera.impala.thrift.TGrantRevokePrivParams(other.grant_revoke_priv_params);
     }
+    if (other.isSetAlter_index_params()) {
+      this.alter_index_params = new com.cloudera.impala.thrift.TAlterIndexParms(other.alter_index_params);
+    }
+    if (other.isSetCreate_index_params()) {
+      this.create_index_params = new com.cloudera.impala.thrift.TCreateIndexParms(other.create_index_params);
+    }
+    if (other.isSetDrop_index_params()) {
+      this.drop_index_params = new com.cloudera.impala.thrift.TDropIndexParms(other.drop_index_params);
+    }
   }
 
   public TDdlExecRequest deepCopy() {
@@ -369,6 +399,9 @@ public class TDdlExecRequest implements org.apache.thrift.TBase<TDdlExecRequest,
     this.create_drop_role_params = null;
     this.grant_revoke_role_params = null;
     this.grant_revoke_priv_params = null;
+    this.alter_index_params = null;
+    this.create_index_params = null;
+    this.drop_index_params = null;
   }
 
   /**
@@ -867,6 +900,78 @@ public class TDdlExecRequest implements org.apache.thrift.TBase<TDdlExecRequest,
     }
   }
 
+  public com.cloudera.impala.thrift.TAlterIndexParms getAlter_index_params() {
+    return this.alter_index_params;
+  }
+
+  public TDdlExecRequest setAlter_index_params(com.cloudera.impala.thrift.TAlterIndexParms alter_index_params) {
+    this.alter_index_params = alter_index_params;
+    return this;
+  }
+
+  public void unsetAlter_index_params() {
+    this.alter_index_params = null;
+  }
+
+  /** Returns true if field alter_index_params is set (has been assigned a value) and false otherwise */
+  public boolean isSetAlter_index_params() {
+    return this.alter_index_params != null;
+  }
+
+  public void setAlter_index_paramsIsSet(boolean value) {
+    if (!value) {
+      this.alter_index_params = null;
+    }
+  }
+
+  public com.cloudera.impala.thrift.TCreateIndexParms getCreate_index_params() {
+    return this.create_index_params;
+  }
+
+  public TDdlExecRequest setCreate_index_params(com.cloudera.impala.thrift.TCreateIndexParms create_index_params) {
+    this.create_index_params = create_index_params;
+    return this;
+  }
+
+  public void unsetCreate_index_params() {
+    this.create_index_params = null;
+  }
+
+  /** Returns true if field create_index_params is set (has been assigned a value) and false otherwise */
+  public boolean isSetCreate_index_params() {
+    return this.create_index_params != null;
+  }
+
+  public void setCreate_index_paramsIsSet(boolean value) {
+    if (!value) {
+      this.create_index_params = null;
+    }
+  }
+
+  public com.cloudera.impala.thrift.TDropIndexParms getDrop_index_params() {
+    return this.drop_index_params;
+  }
+
+  public TDdlExecRequest setDrop_index_params(com.cloudera.impala.thrift.TDropIndexParms drop_index_params) {
+    this.drop_index_params = drop_index_params;
+    return this;
+  }
+
+  public void unsetDrop_index_params() {
+    this.drop_index_params = null;
+  }
+
+  /** Returns true if field drop_index_params is set (has been assigned a value) and false otherwise */
+  public boolean isSetDrop_index_params() {
+    return this.drop_index_params != null;
+  }
+
+  public void setDrop_index_paramsIsSet(boolean value) {
+    if (!value) {
+      this.drop_index_params = null;
+    }
+  }
+
   public void setFieldValue(_Fields field, Object value) {
     switch (field) {
     case PROTOCOL_VERSION:
@@ -1029,6 +1134,30 @@ public class TDdlExecRequest implements org.apache.thrift.TBase<TDdlExecRequest,
       }
       break;
 
+    case ALTER_INDEX_PARAMS:
+      if (value == null) {
+        unsetAlter_index_params();
+      } else {
+        setAlter_index_params((com.cloudera.impala.thrift.TAlterIndexParms)value);
+      }
+      break;
+
+    case CREATE_INDEX_PARAMS:
+      if (value == null) {
+        unsetCreate_index_params();
+      } else {
+        setCreate_index_params((com.cloudera.impala.thrift.TCreateIndexParms)value);
+      }
+      break;
+
+    case DROP_INDEX_PARAMS:
+      if (value == null) {
+        unsetDrop_index_params();
+      } else {
+        setDrop_index_params((com.cloudera.impala.thrift.TDropIndexParms)value);
+      }
+      break;
+
     }
   }
 
@@ -1094,6 +1223,15 @@ public class TDdlExecRequest implements org.apache.thrift.TBase<TDdlExecRequest,
     case GRANT_REVOKE_PRIV_PARAMS:
       return getGrant_revoke_priv_params();
 
+    case ALTER_INDEX_PARAMS:
+      return getAlter_index_params();
+
+    case CREATE_INDEX_PARAMS:
+      return getCreate_index_params();
+
+    case DROP_INDEX_PARAMS:
+      return getDrop_index_params();
+
     }
     throw new IllegalStateException();
   }
@@ -1145,6 +1283,12 @@ public class TDdlExecRequest implements org.apache.thrift.TBase<TDdlExecRequest,
       return isSetGrant_revoke_role_params();
     case GRANT_REVOKE_PRIV_PARAMS:
       return isSetGrant_revoke_priv_params();
+    case ALTER_INDEX_PARAMS:
+      return isSetAlter_index_params();
+    case CREATE_INDEX_PARAMS:
+      return isSetCreate_index_params();
+    case DROP_INDEX_PARAMS:
+      return isSetDrop_index_params();
     }
     throw new IllegalStateException();
   }
@@ -1342,6 +1486,33 @@ public class TDdlExecRequest implements org.apache.thrift.TBase<TDdlExecRequest,
         return false;
     }
 
+    boolean this_present_alter_index_params = true && this.isSetAlter_index_params();
+    boolean that_present_alter_index_params = true && that.isSetAlter_index_params();
+    if (this_present_alter_index_params || that_present_alter_index_params) {
+      if (!(this_present_alter_index_params && that_present_alter_index_params))
+        return false;
+      if (!this.alter_index_params.equals(that.alter_index_params))
+        return false;
+    }
+
+    boolean this_present_create_index_params = true && this.isSetCreate_index_params();
+    boolean that_present_create_index_params = true && that.isSetCreate_index_params();
+    if (this_present_create_index_params || that_present_create_index_params) {
+      if (!(this_present_create_index_params && that_present_create_index_params))
+        return false;
+      if (!this.create_index_params.equals(that.create_index_params))
+        return false;
+    }
+
+    boolean this_present_drop_index_params = true && this.isSetDrop_index_params();
+    boolean that_present_drop_index_params = true && that.isSetDrop_index_params();
+    if (this_present_drop_index_params || that_present_drop_index_params) {
+      if (!(this_present_drop_index_params && that_present_drop_index_params))
+        return false;
+      if (!this.drop_index_params.equals(that.drop_index_params))
+        return false;
+    }
+
     return true;
   }
 
@@ -1448,6 +1619,21 @@ public class TDdlExecRequest implements org.apache.thrift.TBase<TDdlExecRequest,
     builder.append(present_grant_revoke_priv_params);
     if (present_grant_revoke_priv_params)
       builder.append(grant_revoke_priv_params);
+
+    boolean present_alter_index_params = true && (isSetAlter_index_params());
+    builder.append(present_alter_index_params);
+    if (present_alter_index_params)
+      builder.append(alter_index_params);
+
+    boolean present_create_index_params = true && (isSetCreate_index_params());
+    builder.append(present_create_index_params);
+    if (present_create_index_params)
+      builder.append(create_index_params);
+
+    boolean present_drop_index_params = true && (isSetDrop_index_params());
+    builder.append(present_drop_index_params);
+    if (present_drop_index_params)
+      builder.append(drop_index_params);
 
     return builder.toHashCode();
   }
@@ -1656,6 +1842,36 @@ public class TDdlExecRequest implements org.apache.thrift.TBase<TDdlExecRequest,
     }
     if (isSetGrant_revoke_priv_params()) {
       lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.grant_revoke_priv_params, typedOther.grant_revoke_priv_params);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
+    lastComparison = Boolean.valueOf(isSetAlter_index_params()).compareTo(typedOther.isSetAlter_index_params());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetAlter_index_params()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.alter_index_params, typedOther.alter_index_params);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
+    lastComparison = Boolean.valueOf(isSetCreate_index_params()).compareTo(typedOther.isSetCreate_index_params());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetCreate_index_params()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.create_index_params, typedOther.create_index_params);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
+    lastComparison = Boolean.valueOf(isSetDrop_index_params()).compareTo(typedOther.isSetDrop_index_params());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetDrop_index_params()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.drop_index_params, typedOther.drop_index_params);
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -1875,6 +2091,36 @@ public class TDdlExecRequest implements org.apache.thrift.TBase<TDdlExecRequest,
       }
       first = false;
     }
+    if (isSetAlter_index_params()) {
+      if (!first) sb.append(", ");
+      sb.append("alter_index_params:");
+      if (this.alter_index_params == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.alter_index_params);
+      }
+      first = false;
+    }
+    if (isSetCreate_index_params()) {
+      if (!first) sb.append(", ");
+      sb.append("create_index_params:");
+      if (this.create_index_params == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.create_index_params);
+      }
+      first = false;
+    }
+    if (isSetDrop_index_params()) {
+      if (!first) sb.append(", ");
+      sb.append("drop_index_params:");
+      if (this.drop_index_params == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.drop_index_params);
+      }
+      first = false;
+    }
     sb.append(")");
     return sb.toString();
   }
@@ -1941,6 +2187,15 @@ public class TDdlExecRequest implements org.apache.thrift.TBase<TDdlExecRequest,
     }
     if (grant_revoke_priv_params != null) {
       grant_revoke_priv_params.validate();
+    }
+    if (alter_index_params != null) {
+      alter_index_params.validate();
+    }
+    if (create_index_params != null) {
+      create_index_params.validate();
+    }
+    if (drop_index_params != null) {
+      drop_index_params.validate();
     }
   }
 
@@ -2156,6 +2411,33 @@ public class TDdlExecRequest implements org.apache.thrift.TBase<TDdlExecRequest,
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
+          case 21: // ALTER_INDEX_PARAMS
+            if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+              struct.alter_index_params = new com.cloudera.impala.thrift.TAlterIndexParms();
+              struct.alter_index_params.read(iprot);
+              struct.setAlter_index_paramsIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
+          case 22: // CREATE_INDEX_PARAMS
+            if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+              struct.create_index_params = new com.cloudera.impala.thrift.TCreateIndexParms();
+              struct.create_index_params.read(iprot);
+              struct.setCreate_index_paramsIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
+          case 23: // DROP_INDEX_PARAMS
+            if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+              struct.drop_index_params = new com.cloudera.impala.thrift.TDropIndexParms();
+              struct.drop_index_params.read(iprot);
+              struct.setDrop_index_paramsIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
           default:
             org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
         }
@@ -2307,6 +2589,27 @@ public class TDdlExecRequest implements org.apache.thrift.TBase<TDdlExecRequest,
           oprot.writeFieldEnd();
         }
       }
+      if (struct.alter_index_params != null) {
+        if (struct.isSetAlter_index_params()) {
+          oprot.writeFieldBegin(ALTER_INDEX_PARAMS_FIELD_DESC);
+          struct.alter_index_params.write(oprot);
+          oprot.writeFieldEnd();
+        }
+      }
+      if (struct.create_index_params != null) {
+        if (struct.isSetCreate_index_params()) {
+          oprot.writeFieldBegin(CREATE_INDEX_PARAMS_FIELD_DESC);
+          struct.create_index_params.write(oprot);
+          oprot.writeFieldEnd();
+        }
+      }
+      if (struct.drop_index_params != null) {
+        if (struct.isSetDrop_index_params()) {
+          oprot.writeFieldBegin(DROP_INDEX_PARAMS_FIELD_DESC);
+          struct.drop_index_params.write(oprot);
+          oprot.writeFieldEnd();
+        }
+      }
       oprot.writeFieldStop();
       oprot.writeStructEnd();
     }
@@ -2381,7 +2684,16 @@ public class TDdlExecRequest implements org.apache.thrift.TBase<TDdlExecRequest,
       if (struct.isSetGrant_revoke_priv_params()) {
         optionals.set(17);
       }
-      oprot.writeBitSet(optionals, 18);
+      if (struct.isSetAlter_index_params()) {
+        optionals.set(18);
+      }
+      if (struct.isSetCreate_index_params()) {
+        optionals.set(19);
+      }
+      if (struct.isSetDrop_index_params()) {
+        optionals.set(20);
+      }
+      oprot.writeBitSet(optionals, 21);
       if (struct.isSetHeader()) {
         struct.header.write(oprot);
       }
@@ -2436,6 +2748,15 @@ public class TDdlExecRequest implements org.apache.thrift.TBase<TDdlExecRequest,
       if (struct.isSetGrant_revoke_priv_params()) {
         struct.grant_revoke_priv_params.write(oprot);
       }
+      if (struct.isSetAlter_index_params()) {
+        struct.alter_index_params.write(oprot);
+      }
+      if (struct.isSetCreate_index_params()) {
+        struct.create_index_params.write(oprot);
+      }
+      if (struct.isSetDrop_index_params()) {
+        struct.drop_index_params.write(oprot);
+      }
     }
 
     @Override
@@ -2445,7 +2766,7 @@ public class TDdlExecRequest implements org.apache.thrift.TBase<TDdlExecRequest,
       struct.setProtocol_versionIsSet(true);
       struct.ddl_type = com.cloudera.impala.thrift.TDdlType.findByValue(iprot.readI32());
       struct.setDdl_typeIsSet(true);
-      BitSet incoming = iprot.readBitSet(18);
+      BitSet incoming = iprot.readBitSet(21);
       if (incoming.get(0)) {
         struct.header = new TCatalogServiceRequestHeader();
         struct.header.read(iprot);
@@ -2535,6 +2856,21 @@ public class TDdlExecRequest implements org.apache.thrift.TBase<TDdlExecRequest,
         struct.grant_revoke_priv_params = new com.cloudera.impala.thrift.TGrantRevokePrivParams();
         struct.grant_revoke_priv_params.read(iprot);
         struct.setGrant_revoke_priv_paramsIsSet(true);
+      }
+      if (incoming.get(18)) {
+        struct.alter_index_params = new com.cloudera.impala.thrift.TAlterIndexParms();
+        struct.alter_index_params.read(iprot);
+        struct.setAlter_index_paramsIsSet(true);
+      }
+      if (incoming.get(19)) {
+        struct.create_index_params = new com.cloudera.impala.thrift.TCreateIndexParms();
+        struct.create_index_params.read(iprot);
+        struct.setCreate_index_paramsIsSet(true);
+      }
+      if (incoming.get(20)) {
+        struct.drop_index_params = new com.cloudera.impala.thrift.TDropIndexParms();
+        struct.drop_index_params.read(iprot);
+        struct.setDrop_index_paramsIsSet(true);
       }
     }
   }

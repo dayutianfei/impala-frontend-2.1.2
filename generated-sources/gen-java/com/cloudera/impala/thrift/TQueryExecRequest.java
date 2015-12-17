@@ -1362,14 +1362,14 @@ public class TQueryExecRequest implements org.apache.thrift.TBase<TQueryExecRequ
           case 2: // FRAGMENTS
             if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
               {
-                org.apache.thrift.protocol.TList _list104 = iprot.readListBegin();
-                struct.fragments = new ArrayList<com.cloudera.impala.thrift.TPlanFragment>(_list104.size);
-                for (int _i105 = 0; _i105 < _list104.size; ++_i105)
+                org.apache.thrift.protocol.TList _list120 = iprot.readListBegin();
+                struct.fragments = new ArrayList<com.cloudera.impala.thrift.TPlanFragment>(_list120.size);
+                for (int _i121 = 0; _i121 < _list120.size; ++_i121)
                 {
-                  com.cloudera.impala.thrift.TPlanFragment _elem106; // required
-                  _elem106 = new com.cloudera.impala.thrift.TPlanFragment();
-                  _elem106.read(iprot);
-                  struct.fragments.add(_elem106);
+                  com.cloudera.impala.thrift.TPlanFragment _elem122; // required
+                  _elem122 = new com.cloudera.impala.thrift.TPlanFragment();
+                  _elem122.read(iprot);
+                  struct.fragments.add(_elem122);
                 }
                 iprot.readListEnd();
               }
@@ -1381,13 +1381,13 @@ public class TQueryExecRequest implements org.apache.thrift.TBase<TQueryExecRequ
           case 3: // DEST_FRAGMENT_IDX
             if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
               {
-                org.apache.thrift.protocol.TList _list107 = iprot.readListBegin();
-                struct.dest_fragment_idx = new ArrayList<Integer>(_list107.size);
-                for (int _i108 = 0; _i108 < _list107.size; ++_i108)
+                org.apache.thrift.protocol.TList _list123 = iprot.readListBegin();
+                struct.dest_fragment_idx = new ArrayList<Integer>(_list123.size);
+                for (int _i124 = 0; _i124 < _list123.size; ++_i124)
                 {
-                  int _elem109; // required
-                  _elem109 = iprot.readI32();
-                  struct.dest_fragment_idx.add(_elem109);
+                  int _elem125; // required
+                  _elem125 = iprot.readI32();
+                  struct.dest_fragment_idx.add(_elem125);
                 }
                 iprot.readListEnd();
               }
@@ -1399,26 +1399,26 @@ public class TQueryExecRequest implements org.apache.thrift.TBase<TQueryExecRequ
           case 4: // PER_NODE_SCAN_RANGES
             if (schemeField.type == org.apache.thrift.protocol.TType.MAP) {
               {
-                org.apache.thrift.protocol.TMap _map110 = iprot.readMapBegin();
-                struct.per_node_scan_ranges = new HashMap<Integer,List<com.cloudera.impala.thrift.TScanRangeLocations>>(2*_map110.size);
-                for (int _i111 = 0; _i111 < _map110.size; ++_i111)
+                org.apache.thrift.protocol.TMap _map126 = iprot.readMapBegin();
+                struct.per_node_scan_ranges = new HashMap<Integer,List<com.cloudera.impala.thrift.TScanRangeLocations>>(2*_map126.size);
+                for (int _i127 = 0; _i127 < _map126.size; ++_i127)
                 {
-                  int _key112; // required
-                  List<com.cloudera.impala.thrift.TScanRangeLocations> _val113; // required
-                  _key112 = iprot.readI32();
+                  int _key128; // required
+                  List<com.cloudera.impala.thrift.TScanRangeLocations> _val129; // required
+                  _key128 = iprot.readI32();
                   {
-                    org.apache.thrift.protocol.TList _list114 = iprot.readListBegin();
-                    _val113 = new ArrayList<com.cloudera.impala.thrift.TScanRangeLocations>(_list114.size);
-                    for (int _i115 = 0; _i115 < _list114.size; ++_i115)
+                    org.apache.thrift.protocol.TList _list130 = iprot.readListBegin();
+                    _val129 = new ArrayList<com.cloudera.impala.thrift.TScanRangeLocations>(_list130.size);
+                    for (int _i131 = 0; _i131 < _list130.size; ++_i131)
                     {
-                      com.cloudera.impala.thrift.TScanRangeLocations _elem116; // required
-                      _elem116 = new com.cloudera.impala.thrift.TScanRangeLocations();
-                      _elem116.read(iprot);
-                      _val113.add(_elem116);
+                      com.cloudera.impala.thrift.TScanRangeLocations _elem132; // required
+                      _elem132 = new com.cloudera.impala.thrift.TScanRangeLocations();
+                      _elem132.read(iprot);
+                      _val129.add(_elem132);
                     }
                     iprot.readListEnd();
                   }
-                  struct.per_node_scan_ranges.put(_key112, _val113);
+                  struct.per_node_scan_ranges.put(_key128, _val129);
                 }
                 iprot.readMapEnd();
               }
@@ -1489,14 +1489,14 @@ public class TQueryExecRequest implements org.apache.thrift.TBase<TQueryExecRequ
           case 12: // HOST_LIST
             if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
               {
-                org.apache.thrift.protocol.TList _list117 = iprot.readListBegin();
-                struct.host_list = new ArrayList<com.cloudera.impala.thrift.TNetworkAddress>(_list117.size);
-                for (int _i118 = 0; _i118 < _list117.size; ++_i118)
+                org.apache.thrift.protocol.TList _list133 = iprot.readListBegin();
+                struct.host_list = new ArrayList<com.cloudera.impala.thrift.TNetworkAddress>(_list133.size);
+                for (int _i134 = 0; _i134 < _list133.size; ++_i134)
                 {
-                  com.cloudera.impala.thrift.TNetworkAddress _elem119; // required
-                  _elem119 = new com.cloudera.impala.thrift.TNetworkAddress();
-                  _elem119.read(iprot);
-                  struct.host_list.add(_elem119);
+                  com.cloudera.impala.thrift.TNetworkAddress _elem135; // required
+                  _elem135 = new com.cloudera.impala.thrift.TNetworkAddress();
+                  _elem135.read(iprot);
+                  struct.host_list.add(_elem135);
                 }
                 iprot.readListEnd();
               }
@@ -1531,9 +1531,9 @@ public class TQueryExecRequest implements org.apache.thrift.TBase<TQueryExecRequ
         oprot.writeFieldBegin(FRAGMENTS_FIELD_DESC);
         {
           oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.fragments.size()));
-          for (com.cloudera.impala.thrift.TPlanFragment _iter120 : struct.fragments)
+          for (com.cloudera.impala.thrift.TPlanFragment _iter136 : struct.fragments)
           {
-            _iter120.write(oprot);
+            _iter136.write(oprot);
           }
           oprot.writeListEnd();
         }
@@ -1544,9 +1544,9 @@ public class TQueryExecRequest implements org.apache.thrift.TBase<TQueryExecRequ
           oprot.writeFieldBegin(DEST_FRAGMENT_IDX_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.I32, struct.dest_fragment_idx.size()));
-            for (int _iter121 : struct.dest_fragment_idx)
+            for (int _iter137 : struct.dest_fragment_idx)
             {
-              oprot.writeI32(_iter121);
+              oprot.writeI32(_iter137);
             }
             oprot.writeListEnd();
           }
@@ -1558,14 +1558,14 @@ public class TQueryExecRequest implements org.apache.thrift.TBase<TQueryExecRequ
           oprot.writeFieldBegin(PER_NODE_SCAN_RANGES_FIELD_DESC);
           {
             oprot.writeMapBegin(new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.I32, org.apache.thrift.protocol.TType.LIST, struct.per_node_scan_ranges.size()));
-            for (Map.Entry<Integer, List<com.cloudera.impala.thrift.TScanRangeLocations>> _iter122 : struct.per_node_scan_ranges.entrySet())
+            for (Map.Entry<Integer, List<com.cloudera.impala.thrift.TScanRangeLocations>> _iter138 : struct.per_node_scan_ranges.entrySet())
             {
-              oprot.writeI32(_iter122.getKey());
+              oprot.writeI32(_iter138.getKey());
               {
-                oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, _iter122.getValue().size()));
-                for (com.cloudera.impala.thrift.TScanRangeLocations _iter123 : _iter122.getValue())
+                oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, _iter138.getValue().size()));
+                for (com.cloudera.impala.thrift.TScanRangeLocations _iter139 : _iter138.getValue())
                 {
-                  _iter123.write(oprot);
+                  _iter139.write(oprot);
                 }
                 oprot.writeListEnd();
               }
@@ -1620,9 +1620,9 @@ public class TQueryExecRequest implements org.apache.thrift.TBase<TQueryExecRequ
         oprot.writeFieldBegin(HOST_LIST_FIELD_DESC);
         {
           oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.host_list.size()));
-          for (com.cloudera.impala.thrift.TNetworkAddress _iter124 : struct.host_list)
+          for (com.cloudera.impala.thrift.TNetworkAddress _iter140 : struct.host_list)
           {
-            _iter124.write(oprot);
+            _iter140.write(oprot);
           }
           oprot.writeListEnd();
         }
@@ -1647,18 +1647,18 @@ public class TQueryExecRequest implements org.apache.thrift.TBase<TQueryExecRequ
       TTupleProtocol oprot = (TTupleProtocol) prot;
       {
         oprot.writeI32(struct.fragments.size());
-        for (com.cloudera.impala.thrift.TPlanFragment _iter125 : struct.fragments)
+        for (com.cloudera.impala.thrift.TPlanFragment _iter141 : struct.fragments)
         {
-          _iter125.write(oprot);
+          _iter141.write(oprot);
         }
       }
       struct.query_ctx.write(oprot);
       oprot.writeI32(struct.stmt_type.getValue());
       {
         oprot.writeI32(struct.host_list.size());
-        for (com.cloudera.impala.thrift.TNetworkAddress _iter126 : struct.host_list)
+        for (com.cloudera.impala.thrift.TNetworkAddress _iter142 : struct.host_list)
         {
-          _iter126.write(oprot);
+          _iter142.write(oprot);
         }
       }
       BitSet optionals = new BitSet();
@@ -1693,23 +1693,23 @@ public class TQueryExecRequest implements org.apache.thrift.TBase<TQueryExecRequ
       if (struct.isSetDest_fragment_idx()) {
         {
           oprot.writeI32(struct.dest_fragment_idx.size());
-          for (int _iter127 : struct.dest_fragment_idx)
+          for (int _iter143 : struct.dest_fragment_idx)
           {
-            oprot.writeI32(_iter127);
+            oprot.writeI32(_iter143);
           }
         }
       }
       if (struct.isSetPer_node_scan_ranges()) {
         {
           oprot.writeI32(struct.per_node_scan_ranges.size());
-          for (Map.Entry<Integer, List<com.cloudera.impala.thrift.TScanRangeLocations>> _iter128 : struct.per_node_scan_ranges.entrySet())
+          for (Map.Entry<Integer, List<com.cloudera.impala.thrift.TScanRangeLocations>> _iter144 : struct.per_node_scan_ranges.entrySet())
           {
-            oprot.writeI32(_iter128.getKey());
+            oprot.writeI32(_iter144.getKey());
             {
-              oprot.writeI32(_iter128.getValue().size());
-              for (com.cloudera.impala.thrift.TScanRangeLocations _iter129 : _iter128.getValue())
+              oprot.writeI32(_iter144.getValue().size());
+              for (com.cloudera.impala.thrift.TScanRangeLocations _iter145 : _iter144.getValue())
               {
-                _iter129.write(oprot);
+                _iter145.write(oprot);
               }
             }
           }
@@ -1736,14 +1736,14 @@ public class TQueryExecRequest implements org.apache.thrift.TBase<TQueryExecRequ
     public void read(org.apache.thrift.protocol.TProtocol prot, TQueryExecRequest struct) throws org.apache.thrift.TException {
       TTupleProtocol iprot = (TTupleProtocol) prot;
       {
-        org.apache.thrift.protocol.TList _list130 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-        struct.fragments = new ArrayList<com.cloudera.impala.thrift.TPlanFragment>(_list130.size);
-        for (int _i131 = 0; _i131 < _list130.size; ++_i131)
+        org.apache.thrift.protocol.TList _list146 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+        struct.fragments = new ArrayList<com.cloudera.impala.thrift.TPlanFragment>(_list146.size);
+        for (int _i147 = 0; _i147 < _list146.size; ++_i147)
         {
-          com.cloudera.impala.thrift.TPlanFragment _elem132; // required
-          _elem132 = new com.cloudera.impala.thrift.TPlanFragment();
-          _elem132.read(iprot);
-          struct.fragments.add(_elem132);
+          com.cloudera.impala.thrift.TPlanFragment _elem148; // required
+          _elem148 = new com.cloudera.impala.thrift.TPlanFragment();
+          _elem148.read(iprot);
+          struct.fragments.add(_elem148);
         }
       }
       struct.setFragmentsIsSet(true);
@@ -1753,14 +1753,14 @@ public class TQueryExecRequest implements org.apache.thrift.TBase<TQueryExecRequ
       struct.stmt_type = com.cloudera.impala.thrift.TStmtType.findByValue(iprot.readI32());
       struct.setStmt_typeIsSet(true);
       {
-        org.apache.thrift.protocol.TList _list133 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-        struct.host_list = new ArrayList<com.cloudera.impala.thrift.TNetworkAddress>(_list133.size);
-        for (int _i134 = 0; _i134 < _list133.size; ++_i134)
+        org.apache.thrift.protocol.TList _list149 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+        struct.host_list = new ArrayList<com.cloudera.impala.thrift.TNetworkAddress>(_list149.size);
+        for (int _i150 = 0; _i150 < _list149.size; ++_i150)
         {
-          com.cloudera.impala.thrift.TNetworkAddress _elem135; // required
-          _elem135 = new com.cloudera.impala.thrift.TNetworkAddress();
-          _elem135.read(iprot);
-          struct.host_list.add(_elem135);
+          com.cloudera.impala.thrift.TNetworkAddress _elem151; // required
+          _elem151 = new com.cloudera.impala.thrift.TNetworkAddress();
+          _elem151.read(iprot);
+          struct.host_list.add(_elem151);
         }
       }
       struct.setHost_listIsSet(true);
@@ -1772,38 +1772,38 @@ public class TQueryExecRequest implements org.apache.thrift.TBase<TQueryExecRequ
       }
       if (incoming.get(1)) {
         {
-          org.apache.thrift.protocol.TList _list136 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.I32, iprot.readI32());
-          struct.dest_fragment_idx = new ArrayList<Integer>(_list136.size);
-          for (int _i137 = 0; _i137 < _list136.size; ++_i137)
+          org.apache.thrift.protocol.TList _list152 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.I32, iprot.readI32());
+          struct.dest_fragment_idx = new ArrayList<Integer>(_list152.size);
+          for (int _i153 = 0; _i153 < _list152.size; ++_i153)
           {
-            int _elem138; // required
-            _elem138 = iprot.readI32();
-            struct.dest_fragment_idx.add(_elem138);
+            int _elem154; // required
+            _elem154 = iprot.readI32();
+            struct.dest_fragment_idx.add(_elem154);
           }
         }
         struct.setDest_fragment_idxIsSet(true);
       }
       if (incoming.get(2)) {
         {
-          org.apache.thrift.protocol.TMap _map139 = new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.I32, org.apache.thrift.protocol.TType.LIST, iprot.readI32());
-          struct.per_node_scan_ranges = new HashMap<Integer,List<com.cloudera.impala.thrift.TScanRangeLocations>>(2*_map139.size);
-          for (int _i140 = 0; _i140 < _map139.size; ++_i140)
+          org.apache.thrift.protocol.TMap _map155 = new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.I32, org.apache.thrift.protocol.TType.LIST, iprot.readI32());
+          struct.per_node_scan_ranges = new HashMap<Integer,List<com.cloudera.impala.thrift.TScanRangeLocations>>(2*_map155.size);
+          for (int _i156 = 0; _i156 < _map155.size; ++_i156)
           {
-            int _key141; // required
-            List<com.cloudera.impala.thrift.TScanRangeLocations> _val142; // required
-            _key141 = iprot.readI32();
+            int _key157; // required
+            List<com.cloudera.impala.thrift.TScanRangeLocations> _val158; // required
+            _key157 = iprot.readI32();
             {
-              org.apache.thrift.protocol.TList _list143 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-              _val142 = new ArrayList<com.cloudera.impala.thrift.TScanRangeLocations>(_list143.size);
-              for (int _i144 = 0; _i144 < _list143.size; ++_i144)
+              org.apache.thrift.protocol.TList _list159 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+              _val158 = new ArrayList<com.cloudera.impala.thrift.TScanRangeLocations>(_list159.size);
+              for (int _i160 = 0; _i160 < _list159.size; ++_i160)
               {
-                com.cloudera.impala.thrift.TScanRangeLocations _elem145; // required
-                _elem145 = new com.cloudera.impala.thrift.TScanRangeLocations();
-                _elem145.read(iprot);
-                _val142.add(_elem145);
+                com.cloudera.impala.thrift.TScanRangeLocations _elem161; // required
+                _elem161 = new com.cloudera.impala.thrift.TScanRangeLocations();
+                _elem161.read(iprot);
+                _val158.add(_elem161);
               }
             }
-            struct.per_node_scan_ranges.put(_key141, _val142);
+            struct.per_node_scan_ranges.put(_key157, _val158);
           }
         }
         struct.setPer_node_scan_rangesIsSet(true);

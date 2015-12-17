@@ -115,6 +115,14 @@ struct TDdlExecRequest {
 
   // Parameters for GRANT/REVOKE privilege
   20: optional JniCatalog.TGrantRevokePrivParams grant_revoke_priv_params
+
+  //add by liubb  
+  21: optional JniCatalog.TAlterIndexParms alter_index_params
+  
+  22: optional JniCatalog.TCreateIndexParms create_index_params
+    
+  23: optional JniCatalog.TDropIndexParms drop_index_params
+
 }
 
 // Response from executing a TDdlExecRequest

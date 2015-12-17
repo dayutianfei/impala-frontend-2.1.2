@@ -915,14 +915,14 @@ public class TSymbolLookupParams implements org.apache.thrift.TBase<TSymbolLooku
           case 4: // ARG_TYPES
             if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
               {
-                org.apache.thrift.protocol.TList _list162 = iprot.readListBegin();
-                struct.arg_types = new ArrayList<com.cloudera.impala.thrift.TColumnType>(_list162.size);
-                for (int _i163 = 0; _i163 < _list162.size; ++_i163)
+                org.apache.thrift.protocol.TList _list178 = iprot.readListBegin();
+                struct.arg_types = new ArrayList<com.cloudera.impala.thrift.TColumnType>(_list178.size);
+                for (int _i179 = 0; _i179 < _list178.size; ++_i179)
                 {
-                  com.cloudera.impala.thrift.TColumnType _elem164; // required
-                  _elem164 = new com.cloudera.impala.thrift.TColumnType();
-                  _elem164.read(iprot);
-                  struct.arg_types.add(_elem164);
+                  com.cloudera.impala.thrift.TColumnType _elem180; // required
+                  _elem180 = new com.cloudera.impala.thrift.TColumnType();
+                  _elem180.read(iprot);
+                  struct.arg_types.add(_elem180);
                 }
                 iprot.readListEnd();
               }
@@ -993,9 +993,9 @@ public class TSymbolLookupParams implements org.apache.thrift.TBase<TSymbolLooku
         oprot.writeFieldBegin(ARG_TYPES_FIELD_DESC);
         {
           oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.arg_types.size()));
-          for (com.cloudera.impala.thrift.TColumnType _iter165 : struct.arg_types)
+          for (com.cloudera.impala.thrift.TColumnType _iter181 : struct.arg_types)
           {
-            _iter165.write(oprot);
+            _iter181.write(oprot);
           }
           oprot.writeListEnd();
         }
@@ -1038,9 +1038,9 @@ public class TSymbolLookupParams implements org.apache.thrift.TBase<TSymbolLooku
       oprot.writeI32(struct.fn_binary_type.getValue());
       {
         oprot.writeI32(struct.arg_types.size());
-        for (com.cloudera.impala.thrift.TColumnType _iter166 : struct.arg_types)
+        for (com.cloudera.impala.thrift.TColumnType _iter182 : struct.arg_types)
         {
-          _iter166.write(oprot);
+          _iter182.write(oprot);
         }
       }
       oprot.writeBool(struct.has_var_args);
@@ -1065,14 +1065,14 @@ public class TSymbolLookupParams implements org.apache.thrift.TBase<TSymbolLooku
       struct.fn_binary_type = com.cloudera.impala.thrift.TFunctionBinaryType.findByValue(iprot.readI32());
       struct.setFn_binary_typeIsSet(true);
       {
-        org.apache.thrift.protocol.TList _list167 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-        struct.arg_types = new ArrayList<com.cloudera.impala.thrift.TColumnType>(_list167.size);
-        for (int _i168 = 0; _i168 < _list167.size; ++_i168)
+        org.apache.thrift.protocol.TList _list183 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
+        struct.arg_types = new ArrayList<com.cloudera.impala.thrift.TColumnType>(_list183.size);
+        for (int _i184 = 0; _i184 < _list183.size; ++_i184)
         {
-          com.cloudera.impala.thrift.TColumnType _elem169; // required
-          _elem169 = new com.cloudera.impala.thrift.TColumnType();
-          _elem169.read(iprot);
-          struct.arg_types.add(_elem169);
+          com.cloudera.impala.thrift.TColumnType _elem185; // required
+          _elem185 = new com.cloudera.impala.thrift.TColumnType();
+          _elem185.read(iprot);
+          struct.arg_types.add(_elem185);
         }
       }
       struct.setArg_typesIsSet(true);

@@ -223,6 +223,15 @@ struct TShowGrantRoleParams {
   4: optional CatalogObjects.TPrivilege privilege
 }
 
+//add by liubb
+struct TDescribeIndexParams{
+  1: required CatalogObjects.TTableName table_name
+  2: required string index_name
+}
+//add by liubb
+struct TShowIndicesParams{
+  1: required CatalogObjects.TTableName table_name
+}
 // Arguments to getFunctions(), which returns a list of non-qualified function
 // signatures that match an optional pattern. Parameters for SHOW FUNCTIONS.
 struct TGetFunctionsParams {
@@ -256,6 +265,17 @@ struct TExplainResult {
   // each line in the explain plan occupies an entry in the list
   1: required list<Data.TResultRow> results
 }
+// add by liubb
+struct TDescribeIndexResult {
+  // each line in the explain plan occupies an entry in the list
+  1: required list<Data.TResultRow> results
+}
+// add by liubb
+struct TShowIndicesResult {
+  // each line in the explain plan occupies an entry in the list
+  1: required list<string> results
+}
+
 
 // Metadata required to finalize a query - that is, to clean up after the query is done.
 // Only relevant for INSERT queries.
@@ -369,6 +389,9 @@ enum TCatalogOpType {
   SHOW_DATA_SRCS,
   SHOW_ROLES,
   SHOW_GRANT_ROLE,
+  //fllowing added by liubb
+  DESCRIBE_INDEX,
+  SHOW_INDICES
 }
 
 // TODO: Combine SHOW requests with a single struct that contains a field
@@ -414,6 +437,9 @@ struct TCatalogOpRequest {
 
   // Parameters for SHOW CREATE TABLE
   10: optional CatalogObjects.TTableName show_create_table_params
+  // fllowing added by liubb
+  11: optional TShowIndicesParams show_indices_params
+  12: optional TDescribeIndexParams describe_index_params
 }
 
 // Parameters for the SET query option command
