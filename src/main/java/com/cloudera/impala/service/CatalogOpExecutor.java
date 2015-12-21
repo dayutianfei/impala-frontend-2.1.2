@@ -37,6 +37,7 @@ import org.apache.hadoop.hive.metastore.api.ColumnStatisticsObj;
 import org.apache.hadoop.hive.metastore.api.DecimalColumnStatsData;
 import org.apache.hadoop.hive.metastore.api.DoubleColumnStatsData;
 import org.apache.hadoop.hive.metastore.api.FieldSchema;
+import org.apache.hadoop.hive.metastore.api.Index;
 import org.apache.hadoop.hive.metastore.api.LongColumnStatsData;
 import org.apache.hadoop.hive.metastore.api.MetaException;
 import org.apache.hadoop.hive.metastore.api.NoSuchObjectException;
@@ -78,6 +79,7 @@ import com.cloudera.impala.common.ImpalaRuntimeException;
 import com.cloudera.impala.common.InternalException;
 import com.cloudera.impala.common.Pair;
 import com.cloudera.impala.thrift.ImpalaInternalServiceConstants;
+import com.cloudera.impala.thrift.TAlterIndexParms;
 import com.cloudera.impala.thrift.TAlterTableAddPartitionParams;
 import com.cloudera.impala.thrift.TAlterTableAddReplaceColsParams;
 import com.cloudera.impala.thrift.TAlterTableChangeColParams;
@@ -101,6 +103,7 @@ import com.cloudera.impala.thrift.TCreateDataSourceParams;
 import com.cloudera.impala.thrift.TCreateDbParams;
 import com.cloudera.impala.thrift.TCreateDropRoleParams;
 import com.cloudera.impala.thrift.TCreateFunctionParams;
+import com.cloudera.impala.thrift.TCreateIndexParms;
 import com.cloudera.impala.thrift.TCreateOrAlterViewParams;
 import com.cloudera.impala.thrift.TCreateTableLikeParams;
 import com.cloudera.impala.thrift.TCreateTableParams;
@@ -110,6 +113,7 @@ import com.cloudera.impala.thrift.TDdlExecResponse;
 import com.cloudera.impala.thrift.TDropDataSourceParams;
 import com.cloudera.impala.thrift.TDropDbParams;
 import com.cloudera.impala.thrift.TDropFunctionParams;
+import com.cloudera.impala.thrift.TDropIndexParms;
 import com.cloudera.impala.thrift.TDropStatsParams;
 import com.cloudera.impala.thrift.TDropTableOrViewParams;
 import com.cloudera.impala.thrift.TGrantRevokePrivParams;
@@ -247,6 +251,16 @@ public class CatalogOpExecutor {
         grantRevokeRolePrivilege(requestingUser,
             ddlRequest.getGrant_revoke_priv_params(), response);
         break;
+      //add_by_hh.7-7
+      case CREATE_INDEX:
+    	  createIndex(ddlRequest.getCreate_index_params(), response);
+    	  break;
+      case DROP_INDEX:
+    	  dropIndex(ddlRequest.getDrop_index_params(), response);
+    	  break;
+      case ALTER_INDEX:
+    	  alterIndexRebuild(ddlRequest.getAlter_index_params());
+    	  break;
       default: throw new IllegalStateException("Unexpected DDL exec request type: " +
           ddlRequest.ddl_type);
     }
@@ -2431,5 +2445,182 @@ public class CatalogOpExecutor {
     Preconditions.checkNotNull(tbl);
     Preconditions.checkState(tbl.isLoaded());
     return tbl;
+  }
+  
+  
+  private void createIndex(TCreateIndexParms parms,TDdlExecResponse response) throws CatalogException, ImpalaRuntimeException{
+	  org.apache.hadoop.hive.metastore.api.Table msTbl = getMetaStoreTable(TableName.fromThrift(parms.getTable_name()));
+	  Table table=catalog_.getTable(parms.getTable_name().getDb_name(), parms.getTable_name().getTable_name());
+	  Preconditions.checkArgument(table!=null&&(table instanceof HdfsTable),"Table status error:"+table);
+	  HdfsTable hdfsTable=(HdfsTable) table;
+	  Index index=new Index();
+	  index.setCreateTime((int) calculateDdlTime(msTbl));
+	  index.setDbName(parms.getTable_name().getDb_name());
+	  index.setDeferredRebuild(parms.isIf_with_defered_rebuild());
+	  index.setIndexHandlerClass(parms.getIndex_type());
+	  index.setIndexName(parms.getIndex_name());
+	  index.setIndexTableName((index.getDbName()+"__"+parms.getTable_name().getTable_name()+"__"+parms.getIndex_name()).toLowerCase());
+	  List<String> colsList=parms.getColumns();
+	  //attention! we do not expect hive create a default location in hdfs for this index_table;
+	  //so maintain the same location for them,since we only use the metadata of index;
+	  //and remember that when drop index,set deletedata param=false;
+	  StorageDescriptor sd=msTbl.getSd().deepCopy();
+	  List<FieldSchema> fieldSchemas=Lists.newArrayList();
+	  for (String string : colsList) {
+		for (FieldSchema fieldSchema : sd.getCols()) {
+			if (string.equalsIgnoreCase(fieldSchema.getName())) {
+				//store colId in hive
+				fieldSchema.setName(hdfsTable.getColIdByName(string)+"");
+				fieldSchemas.add(fieldSchema);
+			}
+		}
+	  }
+	  Map<String,String> newpro=Maps.newHashMap();
+	  for (String key :  parms.getIndex_properties().keySet()) {
+		if (key.startsWith(com.cloudera.impala.catalog.Index.ANALYZER_PROPERTIES_PREFIX_STRING)) {
+			String colName=key.split("\\.")[1];
+			int colid=hdfsTable.getColIdByName(colName);
+			newpro.put(com.cloudera.impala.catalog.Index.ANALYZER_PROPERTIES_PREFIX_STRING+"."+colid,parms.getIndex_properties().get(key));
+		}else {
+			newpro.put(key, parms.getIndex_properties().get(key));
+		}
+	  }
+	  newpro.put(com.cloudera.impala.catalog.Index.CREATE_TIME_KEY, CommonUtil.TimeStampSecond()+"");
+	  sd.setCols(fieldSchemas);
+	  index.setSd(sd);
+	  index.setParameters(newpro);
+	  index.setOrigTableName(parms.getTable_name().getTable_name());
+//	  LOG.info(index.toString());
+	  //Attention,msClient.getHiveClient().createIndex(index, idxTable) need a table not cantained.
+	  org.apache.hadoop.hive.metastore.api.Table idxTable=msTbl.deepCopy();
+	  idxTable.setTableType(TableType.INDEX_TABLE.toString());
+	  idxTable.setTableName(index.getIndexTableName());
+	  idxTable.setCreateTime((int)CommonUtil.TimeStampSecond());
+	  
+	  MetaStoreClient msClient = catalog_.getMetaStoreClient();
+	    synchronized (metastoreDdlLock_) {
+	      try {
+	        msClient.getHiveClient().createIndex(index, idxTable);
+	      } catch (AlreadyExistsException e) {
+	          throw new ImpalaRuntimeException(
+	              String.format(HMS_RPC_ERROR_FORMAT_STR, "createIndex"), e);
+	      } catch (TException e) {
+	        throw new ImpalaRuntimeException(
+	            String.format(HMS_RPC_ERROR_FORMAT_STR, "createIndex"), e);
+	      }
+	        finally {
+	        msClient.release();
+	      }
+	    }
+	  
+	    //publish event
+	    IndexEvent event=createIndexEvent(parms.getTable_name().getDb_name(),
+				  parms.getTable_name().getTable_name(), parms.getIndex_name(), EventType.CREATE_INDEX);
+	    event.setAffectedPartitionNames(null);
+	    
+	    Set<String> nodes=Sets.newHashSet();
+		  nodes.addAll(hdfsTable.getNodes(null));
+		  event.setExpectedChilds(new ArrayList<String>(nodes));
+		catalog_.publishEvent(event);
+		collector_.add(event);
+		
+		  Table refreshedTable = catalog_.reloadTable(parms.getTable_name());
+		    response.result.setUpdated_catalog_object(TableToTCatalogObject(refreshedTable));
+		    response.result.setVersion(
+		        response.result.getUpdated_catalog_object().getCatalog_version());
+  }
+  
+  
+  private void dropIndex(TDropIndexParms parms,TDdlExecResponse response) throws CatalogException{
+	  //if no partitions specified,means the whole table will be affected
+	  List<String> parsList=null;
+	  if(parms.getPartition_spec()!=null&&(parms.getPartition_spec().size()>0)){
+		  parsList=Lists.newArrayList();
+		  StringBuilder sb=new StringBuilder();
+		  for (TPartitionKeyValue value : parms.getPartition_spec()) {
+			sb.append(value.getValue()).append("/");
+		  }
+		  sb.deleteCharAt(sb.length()-1);
+		  parsList.add(sb.toString());
+	  }
+	  IndexEvent event=createIndexEvent(parms.getTable_name().getDb_name(),
+			  parms.getTable_name().getTable_name(), parms.getIndex_name(), EventType.DROP_INDEX);
+	  event.setAffectedPartitionNames(parsList);
+	  Table table=catalog_.getTable(parms.getTable_name().getDb_name(), parms.getTable_name().getTable_name());
+	  Preconditions.checkArgument(table!=null&&(table instanceof HdfsTable),"Table status error:"+table);
+	  HdfsTable hdfsTable=(HdfsTable) table;
+	  String dbuuid=catalog_.getDb(parms.getTable_name().getDb_name()).getUUID();
+	  String tabuuid=hdfsTable.getUUID();
+	  Set<String> nodes=Sets.newHashSet();
+	  if (parsList==null) {
+		  nodes.addAll(hdfsTable.getNodes(null));
+		  //TODO:if no partiiton spec selected,means the whole index will be deleted,so drop metadata from hvie
+		  MetaStoreClient msClient = catalog_.getMetaStoreClient();
+		    synchronized (metastoreDdlLock_) {
+		      try {
+		        msClient.getHiveClient().dropIndex(event.getDbName(), event.getTabName(), event.getIndexName(), false);
+		      }catch(Exception e){
+		    	  LOG.error(String.format("Drop index on hive error %s.%s:%s,%s",event.getDbName(),event.getTabName(), event.getIndexName(),e));
+		      }
+		        finally {
+		        msClient.release();
+		      }
+		    }
+		  TimerCounter counter=CommonUtil.getTimerCounter();
+		  counter.start();
+		  LOG.info("dropIndex "+parms.getTable_name()+" indexname "+parms.getIndex_name()+",delete from zk...");
+		  catalog_.getHandle().dropIndexByTable(dbuuid, tabuuid, parms.getIndex_name());
+		  counter.stop();
+		  LOG.info("dropIndex delete zk finished."+counter.msg());
+		  
+	  }else {
+		for (String string : parsList) {
+			 nodes.addAll(hdfsTable.getNodes(string));
+			  catalog_.getHandle().dropIndexOnPartition(dbuuid, tabuuid, parms.getIndex_name(),string);
+		}
+	  }
+	  event.setExpectedChilds(new ArrayList<String>(nodes));
+	  catalog_.publishEvent(event);
+	  collector_.add(event);
+	  
+	  Table refreshedTable = catalog_.reloadTable(parms.getTable_name());
+	    response.result.setUpdated_catalog_object(TableToTCatalogObject(refreshedTable));
+	    response.result.setVersion(
+	        response.result.getUpdated_catalog_object().getCatalog_version());
+  }
+  
+  
+  private void alterIndexRebuild(TAlterIndexParms parms) throws CatalogException{
+	  IndexEvent event=createIndexEvent(parms.getTable_name().getDb_name(),
+			  parms.getTable_name().getTable_name(), parms.getIndex_name(), EventType.ALTER_INDEX_REBUILD);
+	  Table table=catalog_.getTable(parms.getTable_name().getDb_name(), parms.getTable_name().getTable_name());
+	  Preconditions.checkArgument(table!=null&&(table instanceof HdfsTable),"Table status error:"+table);
+	  HdfsTable hdfsTable=(HdfsTable) table;
+	  //if no partitions specified,means the whole table will be affected
+	  List<String> parsList=null;
+	  parsList=Lists.newArrayList();
+	  if(parms.getPartition_spec()!=null&&(parms.getPartition_spec().size()>0)){
+		  StringBuilder sb=new StringBuilder();
+		  for (TPartitionKeyValue value : parms.getPartition_spec()) {
+			  sb.append(value.getValue()).append("/");
+		  }
+		  sb.deleteCharAt(sb.length()-1);
+		  parsList.add(sb.toString());
+	  }else {
+		  Set<String> str=hdfsTable.getPartitions().keySet();
+		  //if table not partitioned,using HdfsTable.default_partition_empty_keyString
+		  str.remove(HdfsTable.default_partition_inside_key);
+		  parsList.addAll(str);
+	  }
+	  
+	  
+	  event.setAffectedPartitionNames(parsList);
+	  Set<String> nodes=Sets.newHashSet();
+		for (String string : parsList) {
+			 nodes.addAll(hdfsTable.getNodes(string));
+		}
+	  event.setExpectedChilds(new ArrayList<String>(nodes));
+	  catalog_.publishEvent(event);
+	  collector_.add(event);
   }
 }

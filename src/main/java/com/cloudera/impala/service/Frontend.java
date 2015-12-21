@@ -462,6 +462,41 @@ public class Frontend {
       ddl.op_type = TCatalogOpType.DDL;
       ddl.setDdl_params(req);
       metadata.setColumns(Collections.<TColumn>emptyList());
+    } else if (analysis.isAlterIndexStmt()) { // add by liubb
+      ddl.op_type = TCatalogOpType.DDL;
+      TDdlExecRequest req = new TDdlExecRequest();
+      req.setDdl_type(TDdlType.ALTER_INDEX);
+      req.setAlter_index_params(analysis.getAlterIndexStmt().toThrift());
+      ddl.setDdl_params(req);
+      metadata.setColumns(Collections.<TColumn>emptyList());
+    } else if (analysis.isDropIndexStmt()) { // add by liubb
+        ddl.op_type = TCatalogOpType.DDL;
+        TDdlExecRequest req = new TDdlExecRequest();
+        req.setDdl_type(TDdlType.DROP_INDEX);
+        req.setDrop_index_params(analysis.getDropIndexStmt().toThrift());
+        ddl.setDdl_params(req);
+        metadata.setColumns(Collections.<TColumn>emptyList());
+    } else if (analysis.isCreateIndexStmt()) { // add by liubb
+        ddl.op_type = TCatalogOpType.DDL;
+        TDdlExecRequest req = new TDdlExecRequest();
+        req.setDdl_type(TDdlType.CREATE_INDEX);
+        req.setCreate_index_params(analysis.getCreateIndexStmt().toThrift());
+        ddl.setDdl_params(req);
+        metadata.setColumns(Collections.<TColumn>emptyList());
+    } else if (analysis.isDescribeIndexStmt()) { // add by liubb
+        ddl.op_type = TCatalogOpType.DESCRIBE_INDEX;
+        ddl.setDescribe_index_params(analysis.getDescribeIndexStmt().toThrift());
+        metadata.setColumns(Arrays.asList(
+            new TColumn("columns", Type.STRING.toThrift()),
+            new TColumn("type", Type.STRING.toThrift()),
+            new TColumn("createTime", Type.STRING.toThrift()),
+            new TColumn("analyzer", Type.STRING.toThrift()),
+            new TColumn("ifWithDeferedRebuild", Type.STRING.toThrift())));
+    } else if (analysis.isShowIndicesStmt()) { // add by liubb
+        ddl.op_type = TCatalogOpType.SHOW_INDICES;
+        ddl.setShow_indices_params(analysis.getShowIndicesStmt().toThrift());
+        metadata.setColumns(Arrays.asList(
+            new TColumn("indexName", Type.STRING.toThrift())));
     } else {
       throw new IllegalStateException("Unexpected CatalogOp statement type.");
     }

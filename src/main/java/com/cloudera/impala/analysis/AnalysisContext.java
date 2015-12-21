@@ -57,6 +57,11 @@ public class AnalysisContext {
     public boolean isQueryStmt() { return stmt_ instanceof QueryStmt; }
     public boolean isInsertStmt() { return stmt_ instanceof InsertStmt; }
     public boolean isDropDbStmt() { return stmt_ instanceof DropDbStmt; }
+    public boolean isDropIndexStmt() { return stmt_ instanceof DropIndexStmt; } //add by liubb
+    public boolean isAlterIndexStmt() { return stmt_ instanceof AlterIndexStmt; } //add by liubb
+    public boolean isCreateIndexStmt() { return stmt_ instanceof CreateIndexStmt; } //add by liubb
+    public boolean isDescribeIndexStmt() { return stmt_ instanceof DescribeIndexStmt; } //add by liubb
+    public boolean isShowIndicesStmt() { return stmt_ instanceof ShowIndicesStmt; } //add by liubb
     public boolean isDropTableOrViewStmt() {
       return stmt_ instanceof DropTableOrViewStmt;
     }
@@ -132,6 +137,32 @@ public class AnalysisContext {
       return (AlterTableStmt) stmt_;
     }
 
+    //add by liubb
+    public AlterIndexStmt getAlterIndexStmt() {
+        Preconditions.checkState(isAlterIndexStmt());
+        return (AlterIndexStmt) stmt_;
+    }
+    //add by liubb
+    public CreateIndexStmt getCreateIndexStmt() {
+        Preconditions.checkState(isCreateIndexStmt());
+        return (CreateIndexStmt) stmt_;
+    }
+    
+    //add by liubb
+    public DescribeIndexStmt getDescribeIndexStmt() {
+        Preconditions.checkState(isDescribeIndexStmt());
+        return (DescribeIndexStmt) stmt_;
+    }
+    //add by liubb
+    public DropIndexStmt getDropIndexStmt() {
+        Preconditions.checkState(isDropIndexStmt());
+        return (DropIndexStmt) stmt_;
+    }
+    //add by liubb
+    public ShowIndicesStmt getShowIndicesStmt() {
+        Preconditions.checkState(isShowIndicesStmt());
+        return (ShowIndicesStmt) stmt_;
+    }
     public AlterViewStmt getAlterViewStmt() {
       Preconditions.checkState(isAlterViewStmt());
       return (AlterViewStmt) stmt_;
