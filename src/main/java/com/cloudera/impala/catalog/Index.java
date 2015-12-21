@@ -71,6 +71,10 @@ public class Index implements CatalogObject{
         params = msIndex.getParameters();
     }
     
+    public String getIndexName(){
+        return indexName_;
+    }
+    
     //TODO
     /**
      * 将当前Index对象生成对应的TIndex对象

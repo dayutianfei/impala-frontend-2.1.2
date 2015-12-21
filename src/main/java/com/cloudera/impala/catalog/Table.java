@@ -87,6 +87,8 @@ public abstract class Table implements CatalogObject {
 
   // The lastDdlTime for this table; -1 if not set
   protected long lastDdlTime_;
+  
+  public List<com.cloudera.impala.catalog.Index> indices = new ArrayList<com.cloudera.impala.catalog.Index>() ;
 
   // Set of supported table types.
   protected static EnumSet<TableType> SUPPORTED_TABLE_TYPES = EnumSet.of(
@@ -246,6 +248,25 @@ public abstract class Table implements CatalogObject {
     return newTable;
   }
 
+  /**
+   * return null if not exist.
+   * @param name
+   * @return
+   */
+  public com.cloudera.impala.catalog.Index getIndexByName(String name){
+	  for (com.cloudera.impala.catalog.Index idx :indices) {
+		if (idx.getName().equalsIgnoreCase(name)) {
+			return idx;
+		}
+	}
+	  return null;
+  }
+  
+  public List<com.cloudera.impala.catalog.Index> getAllIndexes(){
+	  return indices;
+  }
+  
+  
   protected void loadFromThrift(TTable thriftTable) throws TableLoadingException {
     List<TColumn> columns = new ArrayList<TColumn>();
     columns.addAll(thriftTable.getClustering_columns());

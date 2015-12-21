@@ -45,8 +45,10 @@ import com.cloudera.impala.catalog.Db;
 import com.cloudera.impala.catalog.HBaseTable;
 import com.cloudera.impala.catalog.HdfsTable;
 import com.cloudera.impala.catalog.ImpaladCatalog;
+import com.cloudera.impala.catalog.Index;
 import com.cloudera.impala.catalog.Table;
 import com.cloudera.impala.catalog.TableLoadingException;
+import com.cloudera.impala.catalog.TableNotFoundException;
 import com.cloudera.impala.catalog.Type;
 import com.cloudera.impala.catalog.View;
 import com.cloudera.impala.common.AnalysisException;
@@ -104,6 +106,8 @@ public class Analyzer {
   public final static String DB_ALREADY_EXISTS_ERROR_MSG = "Database already exists: ";
   public final static String TBL_DOES_NOT_EXIST_ERROR_MSG = "Table does not exist: ";
   public final static String TBL_ALREADY_EXISTS_ERROR_MSG = "Table already exists: ";
+  public final static String INDEX_DOES_NOT_EXIST_ERROR_MSG = "Index does not exist: ";
+  public final static String INDEX_ALREADY_EXISTS_ERROR_MSG = "Index already exists: ";
   public final static String FN_DOES_NOT_EXIST_ERROR_MSG = "Function does not exist: ";
   public final static String FN_ALREADY_EXISTS_ERROR_MSG = "Function already exists: ";
   public final static String DATA_SRC_DOES_NOT_EXIST_ERROR_MSG =
@@ -2094,6 +2098,27 @@ public class Analyzer {
       return db.containsTable(tableName);
     } catch (DatabaseNotFoundException e) {
       throw new AnalysisException(DB_DOES_NOT_EXIST_ERROR_MSG + dbName);
+    }
+  }
+  /**
+  * Checks if the given table contains the given index
+  */
+  public boolean tableContainsIndex(String dbName, String tableName, String indexName)
+      throws AnalysisException {
+    try {
+      Db db = getCatalog().getDb(dbName);
+      if (db == null) {
+        throw new DatabaseNotFoundException("Database not found: " + dbName);
+      }
+      Table tbl = db.getTable(tableName);
+      if(tbl == null){
+    	  throw new TableNotFoundException("table not found: " + dbName);
+      }
+      return !( tbl.getIndexByName(indexName) == null );
+    } catch (DatabaseNotFoundException e) {
+      throw new AnalysisException(DB_DOES_NOT_EXIST_ERROR_MSG + dbName);
+    } catch (TableNotFoundException E){
+      throw new AnalysisException(TBL_DOES_NOT_EXIST_ERROR_MSG + tableName);
     }
   }
 
